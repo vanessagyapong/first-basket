@@ -1,0 +1,1501 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - First Basket Premium Groceries</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-olive': '#1F1F1F',
+                        'golden-tan': '#C9A66B',
+                        'warm-beige': '#F5F2E8',
+                        'muted-sage': '#8B9A7A'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            background: #1F1F1F;
+            color: #F5F2E8;
+        }
+
+        /* Glass Effects */
+        .glass-card {
+            background: rgba(245, 242, 232, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 166, 107, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card:hover {
+            background: rgba(245, 242, 232, 0.12);
+            border-color: rgba(201, 166, 107, 0.4);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(31, 31, 31, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 166, 107, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #C9A66B, #D4B876);
+            color: #1F1F1F;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(201, 166, 107, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 166, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(201, 166, 107, 0.1);
+            color: #C9A66B;
+            border: 2px solid rgba(201, 166, 107, 0.5);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(201, 166, 107, 0.2);
+            border-color: #C9A66B;
+            transform: translateY(-1px);
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: rgba(245, 242, 232, 0.06);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(201, 166, 107, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(201, 166, 107, 0.5);
+            background: rgba(245, 242, 232, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(139, 154, 122, 0.3), rgba(165, 180, 138, 0.3));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        /* Filter Tags */
+        .filter-tag {
+            background: rgba(245, 242, 232, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(201, 166, 107, 0.3);
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            color: #F5F2E8;
+            font-weight: 500;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+        .filter-tag:hover {
+            background: rgba(201, 166, 107, 0.15);
+            border-color: rgba(201, 166, 107, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .filter-tag.active {
+            background: linear-gradient(135deg, #C9A66B, #D4B876);
+            border-color: #C9A66B;
+            color: #1F1F1F;
+            font-weight: 600;
+            box-shadow: 0 6px 25px rgba(201, 166, 107, 0.4);
+        }
+
+        /* Active Filter Badges */
+        .active-filter-badge {
+            background: linear-gradient(135deg, #C9A66B, #D4B876);
+            color: #1F1F1F;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(201, 166, 107, 0.3);
+        }
+
+        .remove-filter {
+            background: rgba(31, 31, 31, 0.3);
+            color: #1F1F1F;
+            border: none;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .remove-filter:hover {
+            background: rgba(31, 31, 31, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* Pagination */
+        .pagination-btn {
+            background: rgba(245, 242, 232, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(201, 166, 107, 0.3);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: #F5F2E8;
+            font-weight: 500;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination-btn:hover:not(.disabled) {
+            background: rgba(201, 166, 107, 0.15);
+            border-color: rgba(201, 166, 107, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .pagination-btn.active {
+            background: linear-gradient(135deg, #C9A66B, #D4B876);
+            border-color: #C9A66B;
+            color: #1F1F1F;
+            font-weight: 600;
+        }
+
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Search & Filters */
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            background: rgba(245, 242, 232, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(201, 166, 107, 0.3);
+            border-radius: 25px;
+            padding: 0.8rem 1.5rem;
+            color: #F5F2E8;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #C9A66B;
+            background: rgba(245, 242, 232, 0.15);
+            box-shadow: 0 0 20px rgba(201, 166, 107, 0.3);
+        }
+
+        .search-input::placeholder {
+            color: rgba(245, 242, 232, 0.6);
+        }
+
+        /* Filter Drawer */
+        .filter-sidebar {
+            background: rgba(31, 31, 31, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(201, 166, 107, 0.2);
+            box-shadow: 4px 0 30px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        .filter-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .filter-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Price Range Slider */
+        .price-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(201, 166, 107, 0.3);
+            outline: none;
+        }
+
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #C9A66B;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(201, 166, 107, 0.5);
+        }
+
+        .price-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #C9A66B;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 10px rgba(201, 166, 107, 0.5);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: rgba(31, 31, 31, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(201, 166, 107, 0.3);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(31, 31, 31, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .filter-sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full"><!-- Navigation -->
+  <nav class="navbar fixed top-0 w-full z-50 px-6 py-4">
+   <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+     <div class="w-12 h-12 bg-gradient-to-br from-golden-tan to-yellow-600 rounded-full flex items-center justify-center"><i class="fas fa-shopping-basket text-dark-olive text-xl"></i>
+     </div><span class="text-2xl font-display font-bold text-golden-tan">First Basket</span>
+    </div><!-- Desktop Navigation -->
+    <div class="hidden lg:flex items-center space-x-8"><a href="index.html" class="text-warm-beige hover:text-golden-tan transition-colors">Home</a> <a href="#" class="text-golden-tan font-semibold border-b-2 border-golden-tan transition-colors">Shop</a> <a href="#" class="text-warm-beige hover:text-golden-tan transition-colors">About</a> <a href="#" class="text-warm-beige hover:text-golden-tan transition-colors">FAQ</a> <a href="#" class="text-warm-beige hover:text-golden-tan transition-colors">Contact</a> <a href="#" class="text-warm-beige hover:text-golden-tan transition-colors flex items-center"> <i class="fas fa-user mr-2"></i>Account </a>
+    </div><!-- Search & Cart -->
+    <div class="hidden md:flex items-center space-x-4">
+     <div class="search-container"><input type="text" class="search-input w-80" placeholder="Search products..." id="main-search"> <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-golden-tan"></i>
+     </div><button class="cart-toggle relative p-2"> <i class="fas fa-shopping-cart text-2xl text-golden-tan"></i> <span class="cart-count absolute -top-1 -right-1 bg-golden-tan text-dark-olive text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">0</span> </button>
+    </div><!-- Mobile Menu Button --> <button class="lg:hidden mobile-menu-btn"> <i class="fas fa-bars text-2xl text-golden-tan"></i> </button>
+   </div>
+  </nav><!-- Mobile Menu -->
+  <div class="mobile-menu">
+   <div class="p-6">
+    <div class="flex justify-between items-center mb-8"><span class="text-2xl font-display font-bold text-golden-tan">First Basket</span> <button class="mobile-menu-close"> <i class="fas fa-times text-2xl text-golden-tan"></i> </button>
+    </div>
+    <div class="space-y-6"><a href="index.html" class="block text-xl text-warm-beige mobile-nav-link">Home</a> <a href="#" class="block text-xl text-golden-tan font-semibold mobile-nav-link">Shop</a> <a href="#" class="block text-xl text-warm-beige mobile-nav-link">About</a> <a href="#" class="block text-xl text-warm-beige mobile-nav-link">FAQ</a> <a href="#" class="block text-xl text-warm-beige mobile-nav-link">Contact</a> <a href="#" class="block text-xl text-warm-beige mobile-nav-link flex items-center"> <i class="fas fa-user mr-2"></i>Account </a>
+    </div><!-- Mobile Search -->
+    <div class="mt-8">
+     <div class="search-container"><input type="text" class="search-input" placeholder="Search products..." id="mobile-search"> <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-golden-tan"></i>
+     </div>
+    </div>
+   </div>
+  </div><!-- Cart Sidebar -->
+  <div class="cart-overlay"></div>
+  <div class="cart-sidebar">
+   <div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+     <h3 class="text-2xl font-display font-bold text-golden-tan">Your Cart</h3><button class="cart-close"> <i class="fas fa-times text-xl text-golden-tan"></i> </button>
+    </div>
+    <div class="cart-items space-y-4"><!-- Cart items will be populated here -->
+    </div>
+    <div class="cart-empty text-center py-12"><i class="fas fa-shopping-cart text-6xl text-muted-sage mb-4"></i>
+     <p class="text-muted-sage text-lg">Your cart is empty</p>
+     <p class="text-sm text-muted-sage mt-2">Add some delicious items to get started!</p>
+    </div>
+    <div class="cart-footer mt-8 pt-6 border-t border-golden-tan border-opacity-30 hidden">
+     <div class="flex justify-between items-center mb-4"><span class="text-lg font-semibold">Total:</span> <span class="cart-total text-2xl font-bold text-golden-tan">$0.00</span>
+     </div><button class="btn-primary w-full">Checkout</button>
+    </div>
+   </div>
+  </div><!-- Main Content -->
+  <main class="pt-24"><!-- Hero / Intro Section -->
+   <section class="py-16 px-6 bg-gradient-to-r from-transparent via-purple-900 via-transparent to-transparent">
+    <div class="max-w-7xl mx-auto text-center">
+     <h1 id="welcome-title" class="text-5xl lg:text-6xl font-display font-bold text-golden-tan mb-6">Welcome to First Basket</h1>
+     <p id="welcome-subtitle" class="text-xl lg:text-2xl text-muted-sage mb-8 max-w-3xl mx-auto">Discover premium groceries across 11 curated categories</p><!-- Search Bar -->
+     <div class="max-w-md mx-auto">
+      <div class="search-container"><input type="text" class="search-input" placeholder="Search products, categories, or dietary preferences..." id="hero-search"> <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-golden-tan"></i>
+      </div>
+     </div><button id="cta-button" class="btn-primary text-lg px-8 py-3"> Start Shopping Today </button>
+    </div>
+   </section><!-- Product Display Section (Main Content) -->
+   <section class="py-12 px-6">
+    <div class="max-w-7xl mx-auto flex gap-8"><!-- Filter Drawer (Hidden by default) -->
+     <aside class="filter-sidebar fixed top-0 left-0 w-80 h-full p-6 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out">
+      <div class="flex justify-between items-center mb-6">
+       <h2 class="text-xl font-display font-bold text-golden-tan">Filters</h2>
+       <div class="flex items-center space-x-4"><button id="clear-filters" class="text-sm text-muted-sage hover:text-golden-tan transition-colors focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50 rounded px-2 py-1" aria-label="Clear all filters">Clear All</button> <button class="filter-close focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50 rounded p-1" aria-label="Close filters"> <i class="fas fa-times text-xl text-golden-tan"></i> </button>
+       </div>
+      </div><!-- Active Filters Display -->
+      <div id="active-filters" class="mb-6 hidden" role="status" aria-live="polite">
+       <h3 class="text-sm font-semibold text-warm-beige mb-3">Active Filters:</h3>
+       <div id="active-filters-list" class="flex flex-wrap gap-2"></div>
+      </div><!-- Category Filter -->
+      <fieldset class="mb-8"><legend class="text-lg font-semibold text-warm-beige mb-4">Category</legend>
+       <div class="space-y-2 max-h-64 overflow-y-auto"><label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="all" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" checked> <span class="text-muted-sage">All Categories</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="harvest-table" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🥬 The Harvest Table</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="butchers-block" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🥩 The Butcher's Block</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="bakers-craft" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🥖 The Baker's Craft</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="pantry-alchemy" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🍯 Pantry Alchemy</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="creamery-curd" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🧀 Creamery &amp; Curd</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="sip-savor" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">☕ Sip &amp; Savor</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="grain-house" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🌾 The Grain House</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="ghanaian-corner" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🌶️ The Ghanaian Corner</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="vegan-collection" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🌱 The Vegan Collection</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="baby-family" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">👶 Baby &amp; Family Care</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="snacks-treats" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🍫 Snacks &amp; Treats</span> </label>
+       </div>
+      </fieldset><!-- Price Range Filter -->
+      <fieldset class="mb-8"><legend class="text-lg font-semibold text-warm-beige mb-4">Price Range</legend>
+       <div class="space-y-4">
+        <div class="flex justify-between text-sm text-muted-sage" aria-live="polite"><span>$<span id="min-price-display">0</span></span> <span>$<span id="max-price-display">50</span></span>
+        </div>
+        <div class="relative h-6"><input type="range" id="min-price" class="price-slider absolute w-full" min="0" max="50" value="0" step="1" aria-label="Minimum price"> <input type="range" id="max-price" class="price-slider absolute w-full" min="0" max="50" value="50" step="1" aria-label="Maximum price">
+        </div>
+        <div class="flex gap-2 items-center"><label for="min-price-input" class="sr-only">Minimum price</label> <input type="number" id="min-price-input" class="w-20 px-2 py-1 bg-dark-olive border border-golden-tan border-opacity-30 rounded text-warm-beige text-sm focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50" placeholder="Min" min="0" max="50"> <span class="text-muted-sage">to</span> <label for="max-price-input" class="sr-only">Maximum price</label> <input type="number" id="max-price-input" class="w-20 px-2 py-1 bg-dark-olive border border-golden-tan border-opacity-30 rounded text-warm-beige text-sm focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50" placeholder="Max" min="0" max="50">
+        </div>
+       </div>
+      </fieldset><!-- Dietary & Special Attributes -->
+      <fieldset class="mb-8"><legend class="text-lg font-semibold text-warm-beige mb-4">Special Attributes</legend>
+       <div class="space-y-3"><label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="dietary-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="organic"> <span class="text-muted-sage">🌿 Organic</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="dietary-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="vegan"> <span class="text-muted-sage">🌱 Vegan</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="dietary-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="gluten-free"> <span class="text-muted-sage">🌾 Gluten-Free</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="source-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="local"> <span class="text-muted-sage">📍 Local Farms</span> </label>
+       </div>
+      </fieldset><!-- Availability -->
+      <fieldset class="mb-8"><legend class="text-lg font-semibold text-warm-beige mb-4">Availability</legend>
+       <div class="space-y-3"><label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="availability-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="in-stock"> <span class="text-muted-sage">✅ In Stock Only</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="availability-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="same-day"> <span class="text-muted-sage">🚚 Same Day Delivery</span> </label>
+       </div>
+      </fieldset><!-- Sort Options -->
+      <div class="mb-8"><label for="sort-select" class="block text-lg font-semibold text-warm-beige mb-4">Sort By</label> <select class="w-full bg-dark-olive border border-golden-tan border-opacity-30 rounded-lg px-4 py-2 text-warm-beige focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50" id="sort-select"> <option value="featured">✨ Featured</option> <option value="price-low">💰 Price: Low to High</option> <option value="price-high">💎 Price: High to Low</option> <option value="name">🔤 Name A-Z</option> <option value="category">📂 Category</option> </select>
+      </div>
+     </aside><!-- Filter Toggle Button --> <button id="filter-toggle-btn" class="fixed top-28 left-6 bg-golden-tan text-dark-olive px-4 py-2 rounded-lg shadow-lg z-40 flex items-center space-x-2 hover:bg-opacity-90 transition-all"> <i class="fas fa-filter"></i> <span class="font-semibold">Filters</span> </button> <!-- Filter Drawer Overlay -->
+     <div class="filter-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-filter backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300"></div><!-- Main Products Area -->
+     <div class="flex-1"><!-- Product Count & View Options -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+       <div class="flex items-center space-x-4"><span class="text-muted-sage text-lg"> Showing <span id="product-count">44</span> products <span id="category-indicator" class="text-golden-tan font-semibold">across all categories</span> </span>
+       </div>
+       <div class="flex items-center space-x-4"><select class="bg-dark-olive border border-golden-tan border-opacity-30 rounded-lg px-3 py-2 text-warm-beige text-sm" id="products-per-page"> <option value="8">8 per page</option> <option value="12" selected>12 per page</option> <option value="24">24 per page</option> <option value="all">Show all</option> </select>
+        <div class="flex border border-golden-tan border-opacity-30 rounded-lg overflow-hidden"><button class="view-toggle active px-3 py-2 bg-golden-tan text-dark-olive" data-view="grid"> <i class="fas fa-th"></i> </button> <button class="view-toggle px-3 py-2 bg-dark-olive text-golden-tan" data-view="list"> <i class="fas fa-list"></i> </button>
+        </div>
+       </div>
+      </div><!-- Products Container -->
+      <div id="products-container" class="min-h-96"><!-- Products will be populated here by JavaScript -->
+      </div><!-- Pagination -->
+      <div id="pagination-container" class="flex justify-center items-center space-x-2 mt-12"><!-- Pagination will be populated here by JavaScript -->
+      </div>
+     </div>
+    </div>
+   </section>
+  </main><!-- Footer -->
+  <footer class="py-16 px-6 border-t border-golden-tan border-opacity-20 mt-20">
+   <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+     <div>
+      <div class="flex items-center space-x-3 mb-6">
+       <div class="w-12 h-12 bg-gradient-to-br from-golden-tan to-yellow-600 rounded-full flex items-center justify-center"><i class="fas fa-shopping-basket text-dark-olive text-xl"></i>
+       </div><span class="text-2xl font-display font-bold text-golden-tan">First Basket</span>
+      </div>
+      <p class="text-muted-sage mb-6">Premium groceries delivered with luxury and care across Ghana.</p>
+      <div class="flex space-x-4"><a href="#" class="text-muted-sage hover:text-golden-tan transition-colors"> <i class="fab fa-instagram text-2xl"></i> </a> <a href="#" class="text-muted-sage hover:text-golden-tan transition-colors"> <i class="fab fa-twitter text-2xl"></i> </a> <a href="#" class="text-muted-sage hover:text-golden-tan transition-colors"> <i class="fab fa-facebook text-2xl"></i> </a>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold text-warm-beige mb-4">Quick Links</h4>
+      <ul class="space-y-2">
+       <li><a href="index.html" class="text-muted-sage hover:text-golden-tan transition-colors">Home</a></li>
+       <li><a href="#" class="text-muted-sage hover:text-golden-tan transition-colors">About</a></li>
+       <li><a href="#" class="text-muted-sage hover:text-golden-tan transition-colors">FAQ</a></li>
+       <li><a href="#" class="text-muted-sage hover:text-golden-tan transition-colors">Contact</a></li>
+       <li><a href="#" class="text-muted-sage hover:text-golden-tan transition-colors">Categories</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold text-warm-beige mb-4">Popular Categories</h4>
+      <ul class="space-y-2">
+       <li><a href="#harvest-table" class="text-muted-sage hover:text-golden-tan transition-colors">The Harvest Table</a></li>
+       <li><a href="#butchers-block" class="text-muted-sage hover:text-golden-tan transition-colors">The Butcher's Block</a></li>
+       <li><a href="#bakers-craft" class="text-muted-sage hover:text-golden-tan transition-colors">The Baker's Craft</a></li>
+       <li><a href="#ghanaian-corner" class="text-muted-sage hover:text-golden-tan transition-colors">The Ghanaian Corner</a></li>
+       <li><a href="#vegan-collection" class="text-muted-sage hover:text-golden-tan transition-colors">The Vegan Collection</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold text-warm-beige mb-4">Contact Info</h4>
+      <div class="space-y-3">
+       <div class="flex items-center space-x-3"><i class="fas fa-phone text-golden-tan"></i> <span class="text-muted-sage">+233 20 123 4567</span>
+       </div>
+       <div class="flex items-center space-x-3"><i class="fas fa-envelope text-golden-tan"></i> <span class="text-muted-sage">hello@firstbasket.gh</span>
+       </div>
+       <div class="flex items-center space-x-3"><i class="fas fa-map-marker-alt text-golden-tan"></i> <span class="text-muted-sage">Accra, Ghana</span>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-golden-tan border-opacity-20 pt-8 text-center text-muted-sage">
+     <p>© 2024 First Basket. All rights reserved. | Privacy Policy | Terms of Service</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+        // Configuration object
+        const defaultConfig = {
+            welcome_title: "Welcome to First Basket",
+            welcome_subtitle: "Discover premium groceries across 11 curated categories",
+            cta_text: "Start Shopping Today",
+            background_color: "#1F1F1F",
+            surface_color: "#2A2A2A",
+            text_color: "#F5F2E8",
+            primary_action_color: "#C9A66B",
+            secondary_action_color: "#8B9A7A",
+            font_family: "Inter",
+            font_size: 16
+        };
+
+        // Pagination state
+        let currentPage = 1;
+        let productsPerPage = 12;
+        let totalPages = 1;
+
+        // Product Database - 11 Categories
+        const productsDatabase = [
+            // The Harvest Table (Fresh Produce)
+            { id: 1, name: "Organic Avocados", price: 4.99, image: "images2/beef.jpg", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan", "local"], inStock: true, sameDayDelivery: true, description: "Creamy, ripe avocados from local farms" },
+            { id: 2, name: "Organic Strawberries", price: 6.99, image: "🍓", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Sweet, juicy berries picked fresh daily" },
+            { id: 3, name: "Fresh Spinach", price: 3.49, image: "🥬", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan", "local"], inStock: true, sameDayDelivery: true, description: "Baby spinach leaves" },
+            { id: 4, name: "Bell Peppers", price: 4.49, image: "🫑", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Colorful bell pepper mix" },
+            { id: 5, name: "Organic Tomatoes", price: 5.49, image: "🍅", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan", "local"], inStock: true, sameDayDelivery: true, description: "Vine-ripened heirloom tomatoes" },
+            
+            // The Butcher's Block (Premium Meat)
+            { id: 6, name: "Premium Beef Steaks", price: 24.99, image: "🥩", category: "butchers-block", categoryName: "The Butcher's Block", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Grass-fed, locally sourced premium cuts" },
+            { id: 7, name: "Free-Range Chicken", price: 18.99, image: "🐔", category: "butchers-block", categoryName: "The Butcher's Block", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Organic free-range chicken breast" },
+            { id: 8, name: "Wild Salmon Fillets", price: 28.99, image: "🐟", category: "butchers-block", categoryName: "The Butcher's Block", tags: [], inStock: true, sameDayDelivery: false, description: "Fresh Atlantic salmon fillets" },
+            { id: 9, name: "Lamb Chops", price: 32.99, image: "🐑", category: "butchers-block", categoryName: "The Butcher's Block", tags: ["local"], inStock: false, sameDayDelivery: false, description: "Premium grass-fed lamb chops" },
+            
+            // The Baker's Craft (Fresh Bakery)
+            { id: 10, name: "Artisan Sourdough", price: 5.99, image: "🥖", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Fresh-baked artisan sourdough loaves" },
+            { id: 11, name: "Butter Croissants", price: 8.99, image: "🥐", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Buttery French croissants" },
+            { id: 12, name: "Whole Grain Bread", price: 4.99, image: "🍞", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Nutritious whole grain loaf" },
+            { id: 13, name: "Everything Bagels", price: 6.99, image: "🥯", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Fresh-baked everything bagels" },
+            
+            // Pantry Alchemy (Pantry Essentials)
+            { id: 14, name: "Raw Honey", price: 8.99, image: "🍯", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Pure, unfiltered honey from local hives" },
+            { id: 15, name: "Extra Virgin Olive Oil", price: 12.99, image: "🫒", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Cold-pressed Mediterranean olive oil" },
+            { id: 16, name: "Himalayan Sea Salt", price: 4.99, image: "🧂", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Pink Himalayan sea salt" },
+            { id: 17, name: "Artisan Pasta", price: 6.99, image: "🍝", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Fresh fettuccine pasta" },
+            
+            // Creamery & Curd (Dairy & Cheese)
+            { id: 18, name: "Artisan Cheese Selection", price: 12.99, image: "🧀", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Handcrafted cheese from local artisans" },
+            { id: 19, name: "Greek Yogurt", price: 5.99, image: "🥛", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Thick, creamy Greek yogurt" },
+            { id: 20, name: "Farm Fresh Eggs", price: 4.49, image: "🥚", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Free-range organic eggs" },
+            { id: 21, name: "Organic Butter", price: 6.99, image: "🧈", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Churned from grass-fed cream" },
+            
+            // Sip & Savor (Beverages)
+            { id: 22, name: "Cold-Pressed Juices", price: 7.99, image: "🧃", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Fresh cold-pressed vegetable juices" },
+            { id: 23, name: "Artisan Coffee Beans", price: 15.99, image: "☕", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Single-origin coffee beans" },
+            { id: 24, name: "Herbal Tea Collection", price: 9.99, image: "🍵", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Premium herbal tea blends" },
+            { id: 25, name: "Coconut Water", price: 4.99, image: "🥥", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Pure coconut water" },
+            
+            // The Grain House (Grains & Cereals)
+            { id: 26, name: "Organic Quinoa", price: 7.99, image: "🌾", category: "grain-house", categoryName: "The Grain House", tags: ["organic", "vegan", "gluten-free"], inStock: true, sameDayDelivery: true, description: "Tri-color quinoa blend" },
+            { id: 27, name: "Basmati Rice", price: 8.49, image: "🍚", category: "grain-house", categoryName: "The Grain House", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Premium aged basmati rice" },
+            { id: 28, name: "Steel-Cut Oats", price: 5.99, image: "🥣", category: "grain-house", categoryName: "The Grain House", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Hearty steel-cut oats" },
+            { id: 29, name: "Ancient Grain Mix", price: 9.99, image: "🌾", category: "grain-house", categoryName: "The Grain House", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Farro, barley & wheat berries" },
+            
+            // The Ghanaian Corner (Local Specialties)
+            { id: 30, name: "Palm Nut Soup Base", price: 6.99, image: "🥥", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Authentic palm nut concentrate" },
+            { id: 31, name: "Kelewele Spice Mix", price: 4.99, image: "🌶️", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Traditional kelewele seasoning" },
+            { id: 32, name: "Shito Pepper Sauce", price: 8.99, image: "🌶️", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Spicy Ghanaian pepper sauce" },
+            { id: 33, name: "Plantain Chips", price: 5.99, image: "🍌", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Crispy plantain chips" },
+            
+            // The Vegan Collection
+            { id: 34, name: "Almond Butter", price: 9.99, image: "🥜", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Raw, unsalted almond butter" },
+            { id: 35, name: "Coconut Milk", price: 3.99, image: "🥥", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Organic, unsweetened coconut milk" },
+            { id: 36, name: "Nutritional Yeast", price: 7.99, image: "🧀", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Cheesy nutritional yeast flakes" },
+            { id: 37, name: "Cashew Cream", price: 8.99, image: "🥜", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Rich cashew cream" },
+            
+            // Baby & Family Care
+            { id: 38, name: "Organic Baby Food", price: 12.99, image: "👶", category: "baby-family", categoryName: "Baby & Family Care", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Pureed organic baby food variety pack" },
+            { id: 39, name: "Natural Baby Wipes", price: 8.99, image: "🧻", category: "baby-family", categoryName: "Baby & Family Care", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Gentle, chemical-free baby wipes" },
+            { id: 40, name: "Family Multivitamins", price: 15.99, image: "💊", category: "baby-family", categoryName: "Baby & Family Care", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Natural family vitamin supplements" },
+            
+            // Snacks & Treats
+            { id: 41, name: "Dark Chocolate", price: 6.99, image: "🍫", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "70% dark chocolate bars" },
+            { id: 42, name: "Mixed Nuts", price: 9.99, image: "🥜", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Premium mixed nuts" },
+            { id: 43, name: "Dried Fruit Mix", price: 7.99, image: "🍇", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Unsweetened dried fruit medley" },
+            { id: 44, name: "Granola Bars", price: 8.99, image: "🍪", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Homemade granola bars" }
+        ];
+
+        // Cart functionality
+        let cart = [];
+        let cartTotal = 0;
+        let currentProducts = [...productsDatabase];
+        let currentCategory = 'all';
+        let currentView = 'grid';
+        let currentSort = 'featured';
+
+        function updateCartUI() {
+            const cartCount = document.querySelector('.cart-count');
+            const cartItems = document.querySelector('.cart-items');
+            const cartEmpty = document.querySelector('.cart-empty');
+            const cartFooter = document.querySelector('.cart-footer');
+            const cartTotalElement = document.querySelector('.cart-total');
+            
+            cartCount.textContent = cart.length;
+            
+            if (cart.length === 0) {
+                cartEmpty.classList.remove('hidden');
+                cartFooter.classList.add('hidden');
+                cartItems.innerHTML = '';
+            } else {
+                cartEmpty.classList.add('hidden');
+                cartFooter.classList.remove('hidden');
+                cartTotalElement.textContent = `$${cartTotal.toFixed(2)}`;
+                
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="flex items-center space-x-4 p-4 glass-card rounded-lg">
+                        <div class="text-2xl">${item.image}</div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-warm-beige">${item.name}</h4>
+                            <p class="text-golden-tan">$${item.price.toFixed(2)}</p>
+                        </div>
+                        <button class="remove-item text-red-400 hover:text-red-300" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function addToCart(product) {
+            cart.push(product);
+            cartTotal += product.price;
+            updateCartUI();
+            showToast(`${product.name} added to cart!`);
+        }
+
+        function removeFromCart(productId) {
+            const index = cart.findIndex(item => item.id === productId);
+            if (index > -1) {
+                cartTotal -= cart[index].price;
+                cart.splice(index, 1);
+                updateCartUI();
+                showToast('Item removed from cart');
+            }
+        }
+
+        // Filter state
+        let activeFilters = {
+            category: 'all',
+            dietary: new Set(),
+            availability: new Set(),
+            source: new Set(),
+            priceMin: 0,
+            priceMax: 50
+        };
+
+        // Product filtering and display
+        function filterProducts() {
+            let filtered = [...productsDatabase];
+            
+            // Category filter
+            if (activeFilters.category !== 'all') {
+                filtered = filtered.filter(product => product.category === activeFilters.category);
+            }
+            
+            // Price filter
+            filtered = filtered.filter(product => 
+                product.price >= activeFilters.priceMin && product.price <= activeFilters.priceMax
+            );
+            
+            // Dietary filters
+            if (activeFilters.dietary.size > 0) {
+                filtered = filtered.filter(product => {
+                    return Array.from(activeFilters.dietary).every(diet => {
+                        if (diet === 'gluten-free') {
+                            return product.tags.includes('gluten-free');
+                        }
+                        return product.tags.includes(diet);
+                    });
+                });
+            }
+            
+            // Availability filters
+            if (activeFilters.availability.size > 0) {
+                filtered = filtered.filter(product => {
+                    return Array.from(activeFilters.availability).every(avail => {
+                        if (avail === 'in-stock') return product.inStock;
+                        if (avail === 'same-day') return product.sameDayDelivery;
+                        return true;
+                    });
+                });
+            }
+            
+            // Source filters
+            if (activeFilters.source.size > 0) {
+                filtered = filtered.filter(product => {
+                    return Array.from(activeFilters.source).some(source => 
+                        product.tags.includes(source)
+                    );
+                });
+            }
+            
+            // Search filter
+            const searchTerm = document.getElementById('main-search').value.toLowerCase();
+            if (searchTerm) {
+                filtered = filtered.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm) ||
+                    product.categoryName.toLowerCase().includes(searchTerm) ||
+                    product.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            // Sort products
+            switch (currentSort) {
+                case 'price-low':
+                    filtered.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filtered.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    filtered.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'category':
+                    filtered.sort((a, b) => a.categoryName.localeCompare(b.categoryName));
+                    break;
+                default: // featured
+                    // Keep original order
+                    break;
+            }
+            
+            currentProducts = filtered;
+            updateActiveFiltersDisplay();
+            displayProducts();
+        }
+
+        function updateActiveFiltersDisplay() {
+            const activeFiltersContainer = document.getElementById('active-filters');
+            const activeFiltersList = document.getElementById('active-filters-list');
+            
+            let activeFiltersArray = [];
+            
+            // Category filter
+            if (activeFilters.category !== 'all') {
+                const categoryName = productsDatabase.find(p => p.category === activeFilters.category)?.categoryName || activeFilters.category;
+                activeFiltersArray.push({ type: 'category', label: categoryName, value: activeFilters.category });
+            }
+            
+            // Price filter
+            if (activeFilters.priceMin > 0 || activeFilters.priceMax < 50) {
+                activeFiltersArray.push({ 
+                    type: 'price', 
+                    label: `$${activeFilters.priceMin} - $${activeFilters.priceMax}`, 
+                    value: 'price' 
+                });
+            }
+            
+            // Dietary filters
+            activeFilters.dietary.forEach(diet => {
+                const labels = { organic: '🌿 Organic', vegan: '🌱 Vegan', 'gluten-free': '🌾 Gluten-Free' };
+                activeFiltersArray.push({ type: 'dietary', label: labels[diet] || diet, value: diet });
+            });
+            
+            // Availability filters
+            activeFilters.availability.forEach(avail => {
+                const labels = { 'in-stock': '✅ In Stock', 'same-day': '🚚 Same Day' };
+                activeFiltersArray.push({ type: 'availability', label: labels[avail] || avail, value: avail });
+            });
+            
+            // Source filters
+            activeFilters.source.forEach(source => {
+                const labels = { local: '📍 Local' };
+                activeFiltersArray.push({ type: 'source', label: labels[source] || source, value: source });
+            });
+            
+            if (activeFiltersArray.length > 0) {
+                activeFiltersContainer.classList.remove('hidden');
+                activeFiltersList.innerHTML = activeFiltersArray.map(filter => `
+                    <span class="active-filter-badge">
+                        ${filter.label}
+                        <button class="remove-filter ml-2" data-type="${filter.type}" data-value="${filter.value}">×</button>
+                    </span>
+                `).join('');
+            } else {
+                activeFiltersContainer.classList.add('hidden');
+            }
+        }
+
+        function displayProducts() {
+            const container = document.getElementById('products-container');
+            const productCount = document.getElementById('product-count');
+            const categoryIndicator = document.getElementById('category-indicator');
+            
+            if (currentProducts.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16">
+                        <i class="fas fa-search text-6xl text-muted-sage mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-warm-beige mb-2">No products found</h3>
+                        <p class="text-muted-sage">Try adjusting your search terms or category filter</p>
+                    </div>
+                `;
+                document.getElementById('pagination-container').innerHTML = '';
+                return;
+            }
+            
+            // Calculate pagination
+            totalPages = productsPerPage === 'all' ? 1 : Math.ceil(currentProducts.length / productsPerPage);
+            currentPage = Math.min(currentPage, totalPages);
+            
+            // Get products for current page
+            let displayProducts = currentProducts;
+            if (productsPerPage !== 'all') {
+                const startIndex = (currentPage - 1) * productsPerPage;
+                const endIndex = startIndex + productsPerPage;
+                displayProducts = currentProducts.slice(startIndex, endIndex);
+            }
+            
+            // Update product count and category indicator
+            const startItem = productsPerPage === 'all' ? 1 : (currentPage - 1) * productsPerPage + 1;
+            const endItem = productsPerPage === 'all' ? currentProducts.length : Math.min(currentPage * productsPerPage, currentProducts.length);
+            
+            productCount.textContent = `${startItem}-${endItem} of ${currentProducts.length}`;
+            
+            if (currentCategory === 'all') {
+                categoryIndicator.textContent = 'across all categories';
+            } else {
+                const categoryName = productsDatabase.find(p => p.category === currentCategory)?.categoryName || 'selected category';
+                categoryIndicator.textContent = `in ${categoryName}`;
+            }
+            
+            // Display products in grid
+            const gridClass = currentView === 'grid' ? 'grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' : 'space-y-4';
+            
+            container.innerHTML = `
+                <div class="${gridClass}">
+                    ${displayProducts.map(product => `
+                        <div class="product-card fade-in-up ${currentView === 'list' ? 'flex items-center space-x-6' : ''}">
+                            <div class="product-image ${currentView === 'list' ? 'w-32 h-32 flex-shrink-0' : ''}">
+                                ${product.image}
+                                ${!product.inStock ? '<div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs">Out of Stock</div>' : ''}
+                                ${product.sameDayDelivery ? '<div class="absolute top-2 left-2 bg-golden-tan text-dark-olive px-2 py-1 rounded text-xs">Same Day</div>' : ''}
+                            </div>
+                            <div class="p-6 ${currentView === 'list' ? 'flex-1' : ''}">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-warm-beige">${product.name}</h3>
+                                    <span class="text-xs bg-golden-tan bg-opacity-20 text-golden-tan px-2 py-1 rounded">${product.categoryName}</span>
+                                </div>
+                                <p class="text-muted-sage mb-4">${product.description}</p>
+                                <div class="flex flex-wrap gap-1 mb-4">
+                                    ${product.tags.map(tag => `<span class="text-xs bg-muted-sage bg-opacity-20 text-muted-sage px-2 py-1 rounded">${tag}</span>`).join('')}
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold text-golden-tan">$${product.price.toFixed(2)}</span>
+                                    <button class="btn-secondary add-to-cart ${!product.inStock ? 'opacity-50 cursor-not-allowed' : ''}" 
+                                            data-product='${JSON.stringify(product)}' 
+                                            ${!product.inStock ? 'disabled' : ''}>
+                                        ${product.inStock ? 'Add to Cart' : 'Out of Stock'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            // Update pagination
+            updatePagination();
+        }
+
+        function updatePagination() {
+            const paginationContainer = document.getElementById('pagination-container');
+            
+            if (productsPerPage === 'all' || totalPages <= 1) {
+                paginationContainer.innerHTML = '';
+                return;
+            }
+            
+            let paginationHTML = '';
+            
+            // Previous button
+            paginationHTML += `
+                <button class="pagination-btn ${currentPage === 1 ? 'disabled' : ''}" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            `;
+            
+            // Page numbers
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            if (startPage > 1) {
+                paginationHTML += `<button class="pagination-btn" data-page="1">1</button>`;
+                if (startPage > 2) {
+                    paginationHTML += `<span class="text-muted-sage px-2">...</span>`;
+                }
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `
+                    <button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">
+                        ${i}
+                    </button>
+                `;
+            }
+            
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    paginationHTML += `<span class="text-muted-sage px-2">...</span>`;
+                }
+                paginationHTML += `<button class="pagination-btn" data-page="${totalPages}">${totalPages}</button>`;
+            }
+            
+            // Next button
+            paginationHTML += `
+                <button class="pagination-btn ${currentPage === totalPages ? 'disabled' : ''}" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            `;
+            
+            paginationContainer.innerHTML = paginationHTML;
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize products display
+            displayProducts();
+            
+            // Category radio buttons
+            document.querySelectorAll('input[name="category"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    activeFilters.category = this.value;
+                    currentPage = 1;
+                    filterProducts();
+                });
+            });
+            
+            // Dietary checkboxes
+            document.querySelectorAll('.dietary-filter').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        activeFilters.dietary.add(this.value);
+                    } else {
+                        activeFilters.dietary.delete(this.value);
+                    }
+                    currentPage = 1;
+                    filterProducts();
+                });
+            });
+            
+            // Availability checkboxes
+            document.querySelectorAll('.availability-filter').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        activeFilters.availability.add(this.value);
+                    } else {
+                        activeFilters.availability.delete(this.value);
+                    }
+                    currentPage = 1;
+                    filterProducts();
+                });
+            });
+            
+            // Source checkboxes
+            document.querySelectorAll('.source-filter').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        activeFilters.source.add(this.value);
+                    } else {
+                        activeFilters.source.delete(this.value);
+                    }
+                    currentPage = 1;
+                    filterProducts();
+                });
+            });
+            
+            // Price range sliders
+            const minPriceSlider = document.getElementById('min-price');
+            const maxPriceSlider = document.getElementById('max-price');
+            const minPriceInput = document.getElementById('min-price-input');
+            const maxPriceInput = document.getElementById('max-price-input');
+            const minPriceDisplay = document.getElementById('min-price-display');
+            const maxPriceDisplay = document.getElementById('max-price-display');
+            
+            function updatePriceFilter() {
+                activeFilters.priceMin = parseInt(minPriceSlider.value);
+                activeFilters.priceMax = parseInt(maxPriceSlider.value);
+                
+                // Ensure min doesn't exceed max
+                if (activeFilters.priceMin > activeFilters.priceMax) {
+                    activeFilters.priceMin = activeFilters.priceMax;
+                    minPriceSlider.value = activeFilters.priceMin;
+                }
+                
+                minPriceDisplay.textContent = activeFilters.priceMin;
+                maxPriceDisplay.textContent = activeFilters.priceMax;
+                minPriceInput.value = activeFilters.priceMin;
+                maxPriceInput.value = activeFilters.priceMax;
+                
+                currentPage = 1;
+                filterProducts();
+            }
+            
+            minPriceSlider.addEventListener('input', updatePriceFilter);
+            maxPriceSlider.addEventListener('input', updatePriceFilter);
+            
+            minPriceInput.addEventListener('change', function() {
+                const value = Math.max(0, Math.min(50, parseInt(this.value) || 0));
+                minPriceSlider.value = value;
+                updatePriceFilter();
+            });
+            
+            maxPriceInput.addEventListener('change', function() {
+                const value = Math.max(0, Math.min(50, parseInt(this.value) || 50));
+                maxPriceSlider.value = value;
+                updatePriceFilter();
+            });
+            
+            // Clear filters button
+            document.getElementById('clear-filters').addEventListener('click', function() {
+                // Reset all filters
+                activeFilters = {
+                    category: 'all',
+                    dietary: new Set(),
+                    availability: new Set(),
+                    source: new Set(),
+                    priceMin: 0,
+                    priceMax: 50
+                };
+                
+                // Reset UI elements
+                document.querySelector('input[name="category"][value="all"]').checked = true;
+                document.querySelectorAll('.dietary-filter, .availability-filter, .source-filter').forEach(cb => cb.checked = false);
+                document.querySelectorAll('.filter-tag').forEach(tag => tag.classList.remove('active'));
+                
+                minPriceSlider.value = 0;
+                maxPriceSlider.value = 50;
+                minPriceInput.value = '';
+                maxPriceInput.value = '';
+                minPriceDisplay.textContent = '0';
+                maxPriceDisplay.textContent = '50';
+                
+                currentPage = 1;
+                filterProducts();
+            });
+            
+            // No duplicate filter tags - all filtering is handled through the sidebar
+            
+            // Products per page
+            document.getElementById('products-per-page').addEventListener('change', function() {
+                productsPerPage = this.value === 'all' ? 'all' : parseInt(this.value);
+                currentPage = 1;
+                displayProducts();
+            });
+            
+            // Sort functionality
+            document.getElementById('sort-select').addEventListener('change', function() {
+                currentSort = this.value;
+                currentPage = 1;
+                filterProducts();
+            });
+            
+            // Search functionality - sync all search inputs with debouncing
+            let searchTimeout;
+            function syncSearchInputs(sourceId) {
+                clearTimeout(searchTimeout);
+                const searchValue = document.getElementById(sourceId).value;
+                const searchInputs = ['main-search', 'mobile-search', 'hero-search'];
+                
+                searchInputs.forEach(inputId => {
+                    const input = document.getElementById(inputId);
+                    if (input && input.id !== sourceId) {
+                        input.value = searchValue;
+                    }
+                });
+                
+                // Debounce search to improve performance
+                searchTimeout = setTimeout(() => {
+                    currentPage = 1;
+                    filterProducts();
+                }, 300);
+            }
+            
+            // Add search event listeners with better UX
+            ['main-search', 'mobile-search', 'hero-search'].forEach(inputId => {
+                const input = document.getElementById(inputId);
+                if (input) {
+                    input.addEventListener('input', () => syncSearchInputs(inputId));
+                    input.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            clearTimeout(searchTimeout);
+                            currentPage = 1;
+                            filterProducts();
+                        }
+                    });
+                }
+            });
+            
+            // View toggle
+            document.querySelectorAll('.view-toggle').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.view-toggle').forEach(btn => {
+                        btn.classList.remove('active', 'bg-golden-tan', 'text-dark-olive');
+                        btn.classList.add('bg-dark-olive', 'text-golden-tan');
+                    });
+                    this.classList.add('active', 'bg-golden-tan', 'text-dark-olive');
+                    this.classList.remove('bg-dark-olive', 'text-golden-tan');
+                    
+                    currentView = this.dataset.view;
+                    displayProducts(); // Refresh display with new view
+                });
+            });
+            
+            // CTA button scroll to products
+            document.getElementById('cta-button').addEventListener('click', function() {
+                document.getElementById('products-container').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            });
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Cart sidebar functionality
+        const cartToggle = document.querySelector('.cart-toggle');
+        const cartSidebar = document.querySelector('.cart-sidebar');
+        const cartOverlay = document.querySelector('.cart-overlay');
+        const cartClose = document.querySelector('.cart-close');
+
+        function openCart() {
+            cartSidebar.classList.add('open');
+            cartOverlay.classList.add('active');
+        }
+
+        function closeCart() {
+            cartSidebar.classList.remove('open');
+            cartOverlay.classList.remove('active');
+        }
+
+        cartToggle.addEventListener('click', openCart);
+        cartClose.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
+
+        // Filter drawer functionality
+        const filterToggleBtn = document.getElementById('filter-toggle-btn');
+        const filterSidebar = document.querySelector('.filter-sidebar');
+        const filterOverlay = document.querySelector('.filter-overlay');
+        const filterClose = document.querySelector('.filter-close');
+
+        function openFilterDrawer() {
+            filterSidebar.classList.add('open');
+            filterOverlay.classList.add('active');
+        }
+
+        function closeFilterDrawer() {
+            filterSidebar.classList.remove('open');
+            filterOverlay.classList.remove('active');
+        }
+
+        if (filterToggleBtn) {
+            filterToggleBtn.addEventListener('click', openFilterDrawer);
+        }
+
+        if (filterClose) {
+            filterClose.addEventListener('click', closeFilterDrawer);
+        }
+
+        if (filterOverlay) {
+            filterOverlay.addEventListener('click', closeFilterDrawer);
+        }
+
+        // Close filter drawer on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && filterSidebar.classList.contains('open')) {
+                closeFilterDrawer();
+            }
+        });
+
+        // Event delegation for dynamic content
+        document.addEventListener('click', function(e) {
+            // Add to cart functionality
+            if (e.target.closest('.add-to-cart') && !e.target.closest('.add-to-cart').disabled) {
+                const button = e.target.closest('.add-to-cart');
+                const productData = JSON.parse(button.dataset.product);
+                addToCart(productData);
+            }
+            
+            // Remove from cart functionality
+            if (e.target.closest('.remove-item')) {
+                const button = e.target.closest('.remove-item');
+                const productId = parseInt(button.dataset.id);
+                removeFromCart(productId);
+            }
+            
+            // Remove filter functionality
+            if (e.target.closest('.remove-filter')) {
+                const button = e.target.closest('.remove-filter');
+                const filterType = button.dataset.type;
+                const filterValue = button.dataset.value;
+                
+                if (filterType === 'category') {
+                    activeFilters.category = 'all';
+                    document.querySelector('input[name="category"][value="all"]').checked = true;
+                } else if (filterType === 'price') {
+                    activeFilters.priceMin = 0;
+                    activeFilters.priceMax = 50;
+                    document.getElementById('min-price').value = 0;
+                    document.getElementById('max-price').value = 50;
+                    document.getElementById('min-price-display').textContent = '0';
+                    document.getElementById('max-price-display').textContent = '50';
+                    document.getElementById('min-price-input').value = '';
+                    document.getElementById('max-price-input').value = '';
+                } else if (filterType === 'dietary') {
+                    activeFilters.dietary.delete(filterValue);
+                    const checkbox = document.querySelector(`.dietary-filter[value="${filterValue}"]`);
+                    if (checkbox) checkbox.checked = false;
+                    const filterTag = document.querySelector(`.filter-tag[data-filter="${filterValue}"]`);
+                    if (filterTag) filterTag.classList.remove('active');
+                } else if (filterType === 'availability') {
+                    activeFilters.availability.delete(filterValue);
+                    const checkbox = document.querySelector(`.availability-filter[value="${filterValue}"]`);
+                    if (checkbox) checkbox.checked = false;
+                    const filterTag = document.querySelector(`.filter-tag[data-filter="${filterValue === 'same-day' ? 'same-day' : filterValue}"]`);
+                    if (filterTag) filterTag.classList.remove('active');
+                } else if (filterType === 'source') {
+                    activeFilters.source.delete(filterValue);
+                    const checkbox = document.querySelector(`.source-filter[value="${filterValue}"]`);
+                    if (checkbox) checkbox.checked = false;
+                    const filterTag = document.querySelector(`.filter-tag[data-filter="${filterValue}"]`);
+                    if (filterTag) filterTag.classList.remove('active');
+                }
+                
+                currentPage = 1;
+                filterProducts();
+            }
+            
+            // Pagination functionality
+            if (e.target.closest('.pagination-btn') && !e.target.closest('.pagination-btn').disabled) {
+                const button = e.target.closest('.pagination-btn');
+                const page = parseInt(button.dataset.page);
+                if (page && page !== currentPage) {
+                    currentPage = page;
+                    displayProducts();
+                    
+                    // Scroll to top of products
+                    document.getElementById('products-container').scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                }
+            }
+        });
+
+        // Toast notification system
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed top-20 right-4 bg-golden-tan text-dark-olive px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300 font-semibold';
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateX(full)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Initialize cart UI
+        updateCartUI();
+
+        // Home navigation function
+        function goHome() {
+            // Create a simple home page overlay or redirect
+            const homeOverlay = document.createElement('div');
+            homeOverlay.className = 'fixed inset-0 bg-dark-olive z-50 flex items-center justify-center';
+            homeOverlay.innerHTML = `
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-golden-tan to-yellow-600 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-shopping-basket text-dark-olive text-4xl"></i>
+                    </div>
+                    <h1 class="text-4xl font-display font-bold text-golden-tan mb-4">First Basket</h1>
+                    <p class="text-xl text-muted-sage mb-8">Premium groceries delivered with luxury and care</p>
+                    <div class="space-x-4">
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="btn-primary">
+                            Continue Shopping
+                        </button>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="btn-secondary">
+                            Browse Categories
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(homeOverlay);
+            
+            // Auto-remove after 3 seconds if no interaction
+            setTimeout(() => {
+                if (homeOverlay.parentElement) {
+                    homeOverlay.remove();
+                }
+            }, 5000);
+        }
+
+        // Element SDK implementation
+        async function onConfigChange(config) {
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseSize = config.font_size || defaultConfig.font_size;
+            const baseFontStack = 'Inter, sans-serif';
+            
+            // Update text content
+            document.getElementById('welcome-title').textContent = config.welcome_title || defaultConfig.welcome_title;
+            document.getElementById('welcome-subtitle').textContent = config.welcome_subtitle || defaultConfig.welcome_subtitle;
+            document.getElementById('cta-button').textContent = config.cta_text || defaultConfig.cta_text;
+            
+            // Update colors
+            document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
+            document.body.style.color = config.text_color || defaultConfig.text_color;
+            
+            // Update fonts
+            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            document.body.style.fontSize = `${baseSize}px`;
+            
+            // Scale headings proportionally
+            document.querySelectorAll('h1').forEach(el => {
+                el.style.fontSize = `${baseSize * 3.5}px`;
+                el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            });
+            
+            document.querySelectorAll('h2').forEach(el => {
+                el.style.fontSize = `${baseSize * 2}px`;
+                el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            });
+            
+            document.querySelectorAll('h3').forEach(el => {
+                el.style.fontSize = `${baseSize * 1.25}px`;
+                el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            });
+        }
+
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.background_color || defaultConfig.background_color,
+                            set: (value) => {
+                                config.background_color = value;
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.surface_color || defaultConfig.surface_color,
+                            set: (value) => {
+                                config.surface_color = value;
+                                window.elementSdk.setConfig({ surface_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.text_color || defaultConfig.text_color,
+                            set: (value) => {
+                                config.text_color = value;
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                            set: (value) => {
+                                config.primary_action_color = value;
+                                window.elementSdk.setConfig({ primary_action_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                            set: (value) => {
+                                config.secondary_action_color = value;
+                                window.elementSdk.setConfig({ secondary_action_color: value });
+                            }
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: {
+                        get: () => config.font_family || defaultConfig.font_family,
+                        set: (value) => {
+                            config.font_family = value;
+                            window.elementSdk.setConfig({ font_family: value });
+                        }
+                    },
+                    fontSizeable: {
+                        get: () => config.font_size || defaultConfig.font_size,
+                        set: (value) => {
+                            config.font_size = value;
+                            window.elementSdk.setConfig({ font_size: value });
+                        }
+                    }
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["welcome_title", config.welcome_title || defaultConfig.welcome_title],
+                    ["welcome_subtitle", config.welcome_subtitle || defaultConfig.welcome_subtitle],
+                    ["cta_text", config.cta_text || defaultConfig.cta_text]
+                ])
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99736d6ce53c9345',t:'MTc2MTkxNjU5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

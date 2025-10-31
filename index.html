@@ -108,6 +108,25 @@
             background: #C9A66B;
             color: #1F1F1F;
         }
+        .shop-now-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 9999px; /* makes it pill-shaped again */
+  background-color: #DDB67D;
+  color: #3A4A3F;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.shop-now-btn:hover {
+  background-color: #C9A36F;
+  transform: scale(1.03);
+}
+
+
 
         /* Product Cards */
         .product-card {
@@ -423,7 +442,8 @@
   <span class="text-2xl font-display font-bold text-golden-tan">First Basket</span>
 </div>
     <!-- Desktop Navigation -->
-    <div class="hidden lg:flex items-center space-x-8"><a href="#home" class="nav-link text-warm-beige">Home</a> <a href="#shop" class="nav-link text-warm-beige">Shop</a> <a href="#about" class="nav-link text-warm-beige">About</a> <a href="#faq" class="nav-link text-warm-beige">FAQ</a> <a href="#contact" class="nav-link text-warm-beige">Contact</a>
+    <div class="hidden lg:flex items-center space-x-8"><a href="index.html" class="nav-link text-warm-beige">Home</a>
+  <a href="shop.html" class="nav-link text-warm-beige">Shop</a><a href="#about" class="nav-link text-warm-beige">About</a> <a href="#faq" class="nav-link text-warm-beige">FAQ</a> <a href="#contact" class="nav-link text-warm-beige">Contact</a>
     </div>
 
     <!-- Search & Cart -->
@@ -480,10 +500,9 @@
       <p class="text-xl lg:text-2xl text-warm-beige mb-12 max-w-3xl mx-auto">
         Experience premium groceries delivered to your doorstep. Locally sourced, organically grown, luxuriously presented.
       </p>
-    
-      <button id="hero-cta" class="btn-primary text-xl px-12 py-4 mb-16">
-        Shop Now
-      </button>
+      <div class="hero">
+  <a href="shop.html" class="shop-now-btn">Shop Now</a>
+</div>
 
       <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         
