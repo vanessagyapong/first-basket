@@ -1,0 +1,1515 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Basket - Premium Groceries Delivered</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-olive': '#1F1F1F',
+                        'golden-tan': '#C9A66B',
+                        'warm-beige': '#F5F2E8',
+                        'muted-sage': '#8B9A7A'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            background: #1F1F1F;
+            color: #F5F2E8;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(31, 31, 31, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(201, 166, 107, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #C9A66B;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: #C9A66B;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Hero Section */
+        .hero-bg {
+            background: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="organic" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="2" fill="%23C9A66B" opacity="0.1"/></pattern></defs><rect width="1200" height="800" fill="%232A2A2A"/><rect width="1200" height="800" fill="url(%23organic)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #C9A66B, #D4B876);
+            color: #1F1F1F;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(201, 166, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 166, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #C9A66B;
+            border: 2px solid #C9A66B;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #C9A66B;
+            color: #1F1F1F;
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: rgba(245, 242, 232, 0.05);
+            border: 1px solid rgba(201, 166, 107, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: #C9A66B;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #8B9A7A, #A5B48A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        /* Recipe Cards */
+        .recipe-card {
+            background: rgba(245, 242, 232, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 166, 107, 0.3);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            background: rgba(201, 166, 107, 0.12);
+            border-color: rgba(201, 166, 107, 0.5);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, rgba(201, 166, 107, 0.2), rgba(139, 154, 122, 0.2));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+
+        /* Category Cards */
+        .category-card {
+            background: rgba(245, 242, 232, 0.08);
+            border: 1px solid rgba(201, 166, 107, 0.3);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            background: rgba(201, 166, 107, 0.1);
+            border-color: #C9A66B;
+        }
+
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 300px;
+            margin-right: 2rem;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(201, 166, 107, 0.9);
+            color: #1F1F1F;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: #C9A66B;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: 20px;
+        }
+
+        .carousel-btn.next {
+            right: 20px;
+        }
+
+        /* Trust Badges */
+        .trust-badge {
+            background: rgba(201, 166, 107, 0.1);
+            border: 1px solid rgba(201, 166, 107, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .trust-badge:hover {
+            background: rgba(201, 166, 107, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: #1F1F1F;
+            border-left: 1px solid rgba(201, 166, 107, 0.3);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 1px solid rgba(201, 166, 107, 0.2);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: rgba(245, 242, 232, 0.05);
+            padding: 1.5rem;
+            border: none;
+            width: 100%;
+            text-align: left;
+            color: #F5F2E8;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(201, 166, 107, 0.1);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(245, 242, 232, 0.02);
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(201, 166, 107, 0.3);
+            border-top: 3px solid #C9A66B;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #1F1F1F;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            background: rgba(245, 242, 232, 0.1);
+            border: 1px solid rgba(201, 166, 107, 0.3);
+            border-radius: 25px;
+            padding: 0.8rem 1.5rem;
+            color: #F5F2E8;
+            width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #C9A66B;
+            background: rgba(245, 242, 232, 0.15);
+        }
+
+        .search-input::placeholder {
+            color: rgba(245, 242, 232, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .carousel-slide {
+                min-width: 250px;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .search-input {
+                width: 200px;
+            }
+        }
+        
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+    
+    <!-- Navigation -->
+  <nav class="navbar fixed top-0 w-full z-50 px-6 py-4">
+   <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <div class="flex items-center space-x-3">
+ 
+  <img src="images2/logo2.png" alt="First Basket Logo" class="w-12 h-12 rounded-full object-cover">
+  
+  <span class="text-2xl font-display font-bold text-golden-tan">First Basket</span>
+</div>
+    <!-- Desktop Navigation -->
+    <div class="hidden lg:flex items-center space-x-8"><a href="#home" class="nav-link text-warm-beige">Home</a> <a href="#shop" class="nav-link text-warm-beige">Shop</a> <a href="#about" class="nav-link text-warm-beige">About</a> <a href="#faq" class="nav-link text-warm-beige">FAQ</a> <a href="#contact" class="nav-link text-warm-beige">Contact</a>
+    </div>
+
+    <!-- Search & Cart -->
+    <div class="hidden md:flex items-center space-x-4">
+     <div class="search-container"><input type="text" class="search-input" placeholder="Search products..."> <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-golden-tan"></i>
+     </div><button class="cart-toggle relative p-2"> <i class="fas fa-shopping-cart text-2xl text-golden-tan"></i> <span class="cart-count absolute -top-1 -right-1 bg-golden-tan text-dark-olive text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">0</span> </button>
+    </div><!-- Mobile Menu Button --> <button class="lg:hidden mobile-menu-btn"> <i class="fas fa-bars text-2xl text-golden-tan"></i> </button>
+   </div>
+  </nav><!-- Mobile Menu -->
+  <div class="mobile-menu">
+   <div class="p-6">
+
+    <div class="flex justify-between items-center mb-8"><span class="text-2xl font-display font-bold text-golden-tan">First Basket</span> <button class="mobile-menu-close"> <i class="fas fa-times text-2xl text-golden-tan"></i> </button>
+    </div>
+
+    <div class="space-y-6"><a href="#home" class="block text-xl text-warm-beige mobile-nav-link">Home</a> <a href="#shop" class="block text-xl text-warm-beige mobile-nav-link">Shop</a> <a href="#about" class="block text-xl text-warm-beige mobile-nav-link">About</a> <a href="#faq" class="block text-xl text-warm-beige mobile-nav-link">FAQ</a> <a href="#contact" class="block text-xl text-warm-beige mobile-nav-link">Contact</a>
+    </div>
+   </div>
+  </div>
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay"></div>
+  <div class="cart-sidebar">
+   <div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+     <h3 class="text-2xl font-display font-bold text-golden-tan">Your Cart</h3><button class="cart-close"> <i class="fas fa-times text-xl text-golden-tan"></i> </button>
+    </div>
+    <div class="cart-items space-y-4"><!-- Cart items will be populated here -->
+    </div>
+    <div class="cart-empty text-center py-12 hidden"><i class="fas fa-shopping-cart text-6xl text-muted-sage mb-4"></i>
+     <p class="text-muted-sage text-lg">Your cart is empty</p>
+     <p class="text-sm text-muted-sage mt-2">Add some delicious items to get started!</p>
+    </div>
+    <div class="cart-footer mt-8 pt-6 border-t border-golden-tan border-opacity-30">
+     <div class="flex justify-between items-center mb-4"><span class="text-lg font-semibold">Total:</span> <span class="cart-total text-2xl font-bold text-golden-tan">$0.00</span>
+     </div><button class="btn-primary w-full">Checkout</button>
+    </div>
+   </div>
+  </div> 
+
+  <!-- Hero Section -->
+<section id="home" 
+  class="relative flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat" 
+  style="background-image: url('images2/hero.jpg');">
+
+  <!-- Overlay (for darker effect) -->
+  <div class="absolute inset-0 bg-black/70"></div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
+    <div class="fade-in-up">
+      <h1 id="hero-headline" class="text-6xl lg:text-8xl font-display font-bold mb-6 text-warm-beige">
+        Fresh. Curated. Delivered.
+      </h1>
+      <p class="text-xl lg:text-2xl text-warm-beige mb-12 max-w-3xl mx-auto">
+        Experience premium groceries delivered to your doorstep. Locally sourced, organically grown, luxuriously presented.
+      </p>
+    
+      <button id="hero-cta" class="btn-primary text-xl px-12 py-4 mb-16">
+        Shop Now
+      </button>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        
+  <div class="trust-badge text-center">
+    <i class="fas fa-leaf text-3xl text-golden-tan/100 mb-3"></i>
+    <h3 class="font-semibold text-warm-beige/100 mb-2">100% Fresh Guarantee</h3>
+    <p class="text-sm text-warm-beige/100">Farm-to-door freshness guaranteed</p>
+  </div>
+
+  <div class="trust-badge text-center">
+    <i class="fas fa-truck text-3xl text-golden-tan/100 mb-3"></i>
+    <h3 class="font-semibold ext-warm-beige/100 mb-2">Same-Day Delivery</h3>
+    <p class="text-sm text-warm-beige/100">Order before 2PM for same-day delivery</p>
+  </div>
+
+  <div class="trust-badge text-center">
+    <i class="fas fa-award text-3xl text-golden-tan/100 mb-3"></i>
+    <h3 class="font-semibold text-warm-beige/100 mb-2">Premium Quality</h3>
+    <p class="text-sm text-warm-beige/100">Handpicked by our quality experts</p>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+    </div>
+   </div>
+
+  <!-- Featured Products Section -->
+<section id="featured" class="py-20 px-6 bg-dark-olive">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Title -->
+    <div class="text-center mb-16">
+      <h2 id="featured-title" class="text-4xl lg:text-5xl font-display font-bold text-golden-tan mb-4">
+        Featured Products
+      </h2>
+      <p class="text-xl text-muted-sage">
+        Handpicked selections from our premium collection
+      </p>
+    </div>
+
+    <!-- Carousel Container -->
+    <div class="carousel-container relative">
+      <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+      <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+
+      <div class="carousel-track flex transition-transform duration-500 ease-in-out" id="featured-carousel">
+
+        <!-- Product 1 -->
+        <div class="carousel-slide">
+          <div class="product-card bg-dark-olive rounded-2xl overflow-hidden border border-muted-sage/30 shadow-lg">
+            <div class="product-image w-full h-72">
+              <img src="images2/freshavoc.jpg" alt="Organic Avocados" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-warm-beige mb-2">Organic Avocados</h3>
+              <p class="text-muted-sage mb-4">Creamy, ripe avocados from local farms</p>
+              <div class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-golden-tan">$4.99</span>
+                <button class="btn-secondary add-to-cart">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="carousel-slide">
+          <div class="product-card bg-dark-olive rounded-2xl overflow-hidden border border-muted-sage/30 shadow-lg">
+            <div class="product-image w-full h-72">
+              <img src="images2/beef.jpg" alt="Premium Beef" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-warm-beige mb-2">Premium Beef</h3>
+              <p class="text-muted-sage mb-4">Grass-fed, locally sourced premium cuts</p>
+              <div class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-golden-tan">$24.99</span>
+                <button class="btn-secondary add-to-cart">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="carousel-slide">
+          <div class="product-card bg-dark-olive rounded-2xl overflow-hidden border border-muted-sage/30 shadow-lg">
+            <div class="product-image w-full h-72">
+              <img src="images2/strawberries.jpg" alt="Organic Strawberries" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-warm-beige mb-2">Organic Strawberries</h3>
+              <p class="text-muted-sage mb-4">Sweet, juicy berries picked fresh daily</p>
+              <div class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-golden-tan">$6.99</span>
+                <button class="btn-secondary add-to-cart">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="carousel-slide">
+          <div class="product-card bg-dark-olive rounded-2xl overflow-hidden border border-muted-sage/30 shadow-lg">
+            <div class="product-image w-full h-72">
+              <img src="images2/agedcheddar.jpg" alt="Artisan Cheese" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-warm-beige mb-2">Artisan Cheese</h3>
+              <p class="text-muted-sage mb-4">Handcrafted cheese from local artisans</p>
+              <div class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-golden-tan">$12.99</span>
+                <button class="btn-secondary add-to-cart">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="carousel-slide">
+          <div class="product-card bg-dark-olive rounded-2xl overflow-hidden border border-muted-sage/30 shadow-lg">
+            <div class="product-image w-full h-72">
+              <img src="images2/artisanbread.jpg" alt="Sourdough Bread" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-warm-beige mb-2">Sourdough Bread</h3>
+              <p class="text-muted-sage mb-4">Fresh-baked artisan sourdough loaves</p>
+              <div class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-golden-tan">$5.99</span>
+                <button class="btn-secondary add-to-cart">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="carousel-slide">
+          <div class="product-card bg-dark-olive rounded-2xl overflow-hidden border border-muted-sage/30 shadow-lg">
+            <div class="product-image w-full h-72">
+              <img src="images2/localhoney.jpg" alt="Raw Honey" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-warm-beige mb-2">Raw Honey</h3>
+              <p class="text-muted-sage mb-4">Pure, unfiltered honey from local hives</p>
+              <div class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-golden-tan">$8.99</span>
+                <button class="btn-secondary add-to-cart">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+</section><!-- Recipe of the Day -->
+  <section id="recipe-of-the-day" class="py-20 px-6 relative">
+   <div class="absolute inset-0 bg-gradient-to-r from-transparent via-purple-900 via-transparent to-transparent opacity-30"></div>
+   <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+     <h2 id="recipe-title" class="text-4xl lg:text-5xl font-display font-bold text-golden-tan mb-4">Recipe of the Day</h2>
+     <p class="text-xl text-muted-sage">Today's featured recipe with direct shopping links</p>
+    </div><!-- Recipe of the Day Card -->
+    <div class="max-w-6xl mx-auto">
+     <div class="glass-card rounded-3xl overflow-hidden">
+      <div class="grid lg:grid-cols-2 gap-0">
+        
+        <!-- Recipe Image & Info -->
+<div class="relative">
+  <div class="recipe-hero-image h-96 lg:h-full bg-gradient-to-br from-golden-tan to-yellow-600 flex items-center justify-center text-8xl">
+         <img src="images2/mushroompasta1.jpg" alt="Creamy Mushroom Pasta" class="w-full h-full object-cover">
+        </div>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6">
+         <div class="flex items-center space-x-4 text-warm-beige mb-4"><span class="flex items-center bg-black bg-opacity-50 px-3 py-1 rounded-full"> <i class="fas fa-clock mr-2"></i>30 mins </span> <span class="flex items-center bg-black bg-opacity-50 px-3 py-1 rounded-full"> <i class="fas fa-users mr-2"></i>4 servings </span> <span class="flex items-center bg-black bg-opacity-50 px-3 py-1 rounded-full"> <i class="fas fa-star mr-2"></i>Medium </span>
+         </div>
+        </div>
+       </div><!-- Recipe Details -->
+       <div class="p-8 lg:p-12">
+        <div class="mb-6">
+         <h3 class="text-3xl lg:text-4xl font-display font-bold text-golden-tan mb-4">Creamy Mushroom Pasta</h3>
+         <p class="text-lg text-muted-sage leading-relaxed">A rich and creamy pasta dish featuring sautéed mushrooms, fresh herbs, and artisan cheese. Perfect for a cozy dinner with premium ingredients delivered fresh to your door.</p>
+        </div><!-- Ingredients with Shopping Links -->
+        <div class="mb-8">
+         <h4 class="text-xl font-semibold text-warm-beige mb-6 flex items-center"><i class="fas fa-shopping-basket mr-3 text-golden-tan"></i> Ingredients &amp; Shop Links</h4>
+         <div class="space-y-3">
+          <div class="flex items-center justify-between p-4 bg-black bg-opacity-20 rounded-lg backdrop-blur-sm">
+           <div class="flex items-center space-x-3"><span class="text-2xl"></span>
+            <div><span class="text-warm-beige font-medium">Mixed Mushrooms</span>
+             <p class="text-sm text-muted-sage">1 lb shiitake &amp; oyster blend</p>
+            </div>
+           </div><button class="btn-secondary text-sm add-to-cart" data-product="{&quot;id&quot;: 13, &quot;name&quot;: &quot;Mushroom Mix&quot;, &quot;price&quot;: 5.99, &quot;image&quot;: &quot;🍄&quot;, &quot;category&quot;: &quot;produce&quot;}"> Add $5.99 </button>
+          </div>
+          <div class="flex items-center justify-between p-4 bg-black bg-opacity-20 rounded-lg backdrop-blur-sm">
+           <div class="flex items-center space-x-3"><span class="text-2xl"></span>
+            <div><span class="text-warm-beige font-medium">Artisan Cheese</span>
+             <p class="text-sm text-muted-sage">8 oz parmesan &amp; cream cheese</p>
+            </div>
+           </div><button class="btn-secondary text-sm add-to-cart" data-product="{&quot;id&quot;: 4, &quot;name&quot;: &quot;Artisan Cheese&quot;, &quot;price&quot;: 12.99, &quot;image&quot;: &quot;🧀&quot;, &quot;category&quot;: &quot;dairy&quot;}"> Add $12.99 </button>
+          </div>
+          <div class="flex items-center justify-between p-4 bg-black bg-opacity-20 rounded-lg backdrop-blur-sm">
+           <div class="flex items-center space-x-3"><span class="text-2xl"></span>
+            <div><span class="text-warm-beige font-medium">Fresh Herbs</span>
+             <p class="text-sm text-muted-sage">Basil, thyme &amp; parsley</p>
+            </div>
+           </div><button class="btn-secondary text-sm add-to-cart" data-product="{&quot;id&quot;: 14, &quot;name&quot;: &quot;Fresh Herbs&quot;, &quot;price&quot;: 4.99, &quot;image&quot;: &quot;🌿&quot;, &quot;category&quot;: &quot;produce&quot;}"> Add $4.99 </button>
+          </div>
+          <div class="flex items-center justify-between p-4 bg-black bg-opacity-20 rounded-lg backdrop-blur-sm">
+           <div class="flex items-center space-x-3"><span class="text-2xl"></span>
+            <div><span class="text-warm-beige font-medium">Artisan Pasta</span>
+             <p class="text-sm text-muted-sage">1 lb fresh fettuccine</p>
+            </div>
+           </div><button class="btn-secondary text-sm add-to-cart" data-product="{&quot;id&quot;: 15, &quot;name&quot;: &quot;Artisan Pasta&quot;, &quot;price&quot;: 6.99, &quot;image&quot;: &quot;🍝&quot;, &quot;category&quot;: &quot;pantry&quot;}"> Add $6.99 </button>
+          </div>
+          <div class="flex items-center justify-between p-4 bg-black bg-opacity-20 rounded-lg backdrop-blur-sm">
+           <div class="flex items-center space-x-3"><span class="text-2xl"></span>
+            <div><span class="text-warm-beige font-medium">Garlic &amp; Onions</span>
+             <p class="text-sm text-muted-sage">Fresh aromatics</p>
+            </div>
+           </div><button class="btn-secondary text-sm add-to-cart" data-product="{&quot;id&quot;: 16, &quot;name&quot;: &quot;Garlic &amp; Onions&quot;, &quot;price&quot;: 3.99, &quot;image&quot;: &quot;🧄&quot;, &quot;category&quot;: &quot;produce&quot;}"> Add $3.99 </button>
+          </div>
+         </div><!-- Add All Ingredients Button -->
+         <div class="mt-6 p-4 bg-golden-tan bg-opacity-10 rounded-lg border border-golden-tan border-opacity-30">
+          <div class="flex items-center justify-between">
+           <div>
+            <h5 class="text-warm-beige font-semibold">Complete Recipe Kit</h5>
+            <p class="text-sm text-muted-sage">All ingredients for 4 servings</p>
+           </div>
+           <div class="text-right">
+            <div class="text-2xl font-bold text-golden-tan">
+             $34.95
+            </div><button id="add-all-ingredients" class="btn-primary mt-2"> Add All to Cart </button>
+           </div>
+          </div>
+         </div>
+        </div><!-- Quick Instructions -->
+        <div>
+         <h4 class="text-xl font-semibold text-warm-beige mb-4 flex items-center"><i class="fas fa-utensils mr-3 text-golden-tan"></i> Quick Instructions</h4>
+         <ol class="space-y-2 text-muted-sage">
+          <li class="flex items-start"><span class="text-golden-tan font-bold mr-3 mt-1">1.</span> <span>Sauté mushrooms in olive oil until golden brown</span></li>
+          <li class="flex items-start"><span class="text-golden-tan font-bold mr-3 mt-1">2.</span> <span>Add garlic and onions, cook until fragrant</span></li>
+          <li class="flex items-start"><span class="text-golden-tan font-bold mr-3 mt-1">3.</span> <span>Cook pasta according to package directions</span></li>
+          <li class="flex items-start"><span class="text-golden-tan font-bold mr-3 mt-1">4.</span> <span>Combine with cream, cheese, and fresh herbs</span></li>
+          <li class="flex items-start"><span class="text-golden-tan font-bold mr-3 mt-1">5.</span> <span>Serve immediately with extra parmesan</span></li>
+         </ol>
+        </div>
+       </div>
+      </div>
+     </div><!-- Recipe Navigation -->
+     <div class="flex justify-center mt-8 space-x-4"><button id="prev-recipe" class="btn-secondary flex items-center"> <i class="fas fa-chevron-left mr-2"></i> Previous Recipe </button> <button id="next-recipe" class="btn-secondary flex items-center"> Next Recipe <i class="fas fa-chevron-right ml-2"></i> </button>
+     </div>
+    </div>
+   </div>
+
+  </section>
+  <!-- Categories Grid -->
+<section id="shop" class="py-20 px-6 bg-gradient-to-b from-transparent to-black to-transparent">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 id="categories-title" class="text-4xl lg:text-5xl font-display font-bold text-golden-tan mb-4">
+        Shop by Category
+      </h2>
+      <p class="text-xl text-muted-sage">Explore our premium selection across all categories</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- The Harvest Table -->
+      <div class="category-card p-8 text-center rounded-2xl bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="w-full h-48 mb-4 overflow-hidden rounded-xl">
+          <img src="images2/freshproduce.jpg" alt="Fresh Produce" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-display font-semibold text-warm-beige mb-2">The Harvest Table</h3>
+        <p class="text-muted-sage mb-4">Farm-fresh produce, greens, herbs, and edible flowers. Feels like a farmer’s market in a basket.</p>
+        <span class="text-golden-tan font-semibold">200+ items</span>
+      </div>
+
+      <!-- The Butcher’s Block -->
+      <div class="category-card p-8 text-center rounded-2xl bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="w-full h-48 mb-4 overflow-hidden rounded-xl">
+          <img src="images2/premuimeat.jpg" alt="The Butcher’s Block" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-display font-semibold text-warm-beige mb-2">The Butcher’s Block</h3>
+        <p class="text-muted-sage mb-4">Premium cuts, marinated meats, and artisan sausages — sourced from trusted local farms.</p>
+        <span class="text-golden-tan font-semibold">80+ items</span>
+      </div>
+
+      <!-- Pantry Alchemy -->
+      <div class="category-card p-8 text-center rounded-2xl bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="w-full h-48 mb-4 overflow-hidden rounded-xl">
+          <img src="images2/pantry.jpg" alt="Pantry Alchemy" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-display font-semibold text-warm-beige mb-2">Pantry Alchemy</h3>
+        <p class="text-muted-sage mb-4">Spices, oils, sauces, condiments, and all the little jars that make magic in the kitchen.</p>
+        <span class="text-golden-tan font-semibold">150+ items</span>
+      </div>
+
+      <!-- Creamery & Curd-->
+      <div class="category-card p-8 text-center rounded-2xl bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="w-full h-48 mb-4 overflow-hidden rounded-xl">
+          <img src="images2/dairyy.jpg" alt="Creamery & Curd" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-display font-semibold text-warm-beige mb-2">Creamery & Curd</h3>
+        <p class="text-muted-sage mb-4">Dairy, cheeses, yogurts, and cultured butters — both local and imported.</p>
+        <span class="text-golden-tan font-semibold">60+ items</span>
+      </div>
+
+       <!-- Sip & Savor -->
+      <div class="category-card p-8 text-center rounded-2xl bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="w-full h-48 mb-4 overflow-hidden rounded-xl">
+          <img src="images2/sipandsav.jpg" alt="Sip & Savor" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-display font-semibold text-warm-beige mb-2">Sip & Savor</h3>
+        <p class="text-muted-sage mb-4">Teas, coffees, juices, tonics, alcoholic and non-alcoholic beverages.</p>
+        <span class="text-golden-tan font-semibold">60+ items</span>
+      </div>
+
+       <!-- The Baker’s Craft-->
+      <div class="category-card p-8 text-center rounded-2xl bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="w-full h-48 mb-4 overflow-hidden rounded-xl">
+          <img src="images2/baker1.jpg" alt="The Baker’s Craft" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-display font-semibold text-warm-beige mb-2">The Baker’s Craft</h3>
+        <p class="text-muted-sage mb-4">Handcrafted bread, pastries, doughs, and gourmet baked goods.
+</p>
+        <span class="text-golden-tan font-semibold">60+ items</span>
+      </div>
+
+
+       <!--The Grain House -->
+      <div class="category-card p-8 text-center rounded-2xl bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="w-full h-48 mb-4 overflow-hidden rounded-xl">
+          <img src="images2/grain.jpg" alt="The Grain House" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-display font-semibold text-warm-beige mb-2">The Grain House</h3>
+        <p class="text-muted-sage mb-4">Rice, cereals, pulses, beans, and ancient grains — wholesome pantry anchors.</p>
+        <span class="text-golden-tan font-semibold">90+ items</span>
+      </div>
+
+       <!-- The Ghanaian Corner -->
+      <div class="category-card p-8 text-center rounded-2xl bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="w-full h-48 mb-4 overflow-hidden rounded-xl">
+          <img src="images2/ghana.jpg" alt="The Ghanaian Corner" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-display font-semibold text-warm-beige mb-2">The Ghanaian Corner</h3>
+        <p class="text-muted-sage mb-4">Traditional flavors — from shito to waakye leaves</p>
+        <span class="text-golden-tan font-semibold">150+ items</span>
+      </div>
+
+    
+</section>
+<div class="flex justify-center">
+  <a href="#more-categories" class="px-10 py-4 bg-golden-tan text-dark-olive text-lg font-semibold rounded-full shadow-md hover:bg-warm-beige hover:shadow-lg transition duration-500 ease-in-out hover:scale-105">
+    View More Categories →
+  </a>
+</div>
+
+  
+  <!-- Curated Baskets -->
+<section class="py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 id="baskets-title" class="text-4xl lg:text-5xl font-display font-bold text-golden-tan mb-4">
+        Curated Baskets
+      </h2>
+      <p class="text-xl text-muted-sage">Thoughtfully assembled collections for every occasion</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Family Feast Basket -->
+      <div class="product-card rounded-2xl overflow-hidden bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="product-image w-full h-56">
+          <img src="images2/family.jpg" alt="Family Feast Basket" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-warm-beige mb-2">Family Feast Basket</h3>
+          <p class="text-muted-sage mb-4">Everything you need for a perfect family dinner</p>
+          <ul class="text-sm text-muted-sage mb-6 space-y-1">
+            <li>• Premium beef cuts</li>
+            <li>• Fresh seasonal vegetables</li>
+            <li>• Artisan bread &amp; cheese</li>
+            <li>• Organic herbs &amp; spices</li>
+          </ul>
+          <div class="flex justify-between items-center">
+            <span class="text-3xl font-bold text-golden-tan">$89.99</span>
+            <button class="btn-secondary add-to-cart"
+              data-product='{"id":7,"name":"Family Feast Basket","price":89.99,"image":"images/familybasket.jpg"}'>
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Healthy Living Box -->
+      <div class="product-card rounded-2xl overflow-hidden bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="product-image w-full h-56">
+          <img src="images2/healthy.jpg" alt="Healthy Living Box" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-warm-beige mb-2">Healthy Living Box</h3>
+          <p class="text-muted-sage mb-4">Nutrient-rich selections for wellness</p>
+          <ul class="text-sm text-muted-sage mb-6 space-y-1">
+            <li>• Organic superfoods</li>
+            <li>• Fresh leafy greens</li>
+            <li>• Nuts &amp; seeds</li>
+            <li>• Herbal teas</li>
+          </ul>
+          <div class="flex justify-between items-center">
+            <span class="text-3xl font-bold text-golden-tan">$64.99</span>
+            <button class="btn-secondary add-to-cart"
+              data-product='{"id":8,"name":"Healthy Living Box","price":64.99,"image":"images/healthyliving.jpg"}'>
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gourmet Collection -->
+      <div class="product-card rounded-2xl overflow-hidden bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="product-image w-full h-56">
+          <img src="images2/gourmet.jpg" alt="Gourmet Collection" class="w-full h-full object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-warm-beige mb-2">Gourmet Collection</h3>
+          <p class="text-muted-sage mb-4">Luxury items for the discerning palate</p>
+          <ul class="text-sm text-muted-sage mb-6 space-y-1">
+            <li>• Imported delicacies</li>
+            <li>• Artisan chocolates</li>
+            <li>• Premium oils &amp; vinegars</li>
+            <li>• Specialty condiments</li>
+          </ul>
+          <div class="flex justify-between items-center">
+            <span class="text-3xl font-bold text-golden-tan">$124.99</span>
+            <button class="btn-secondary add-to-cart"
+              data-product='{"id":9,"name":"Gourmet Collection","price":124.99,"image":"images/gourmet.jpg"}'>
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<div class="flex justify-center">
+  <a href="#more-categories" class="px-10 py-4 bg-golden-tan text-dark-olive text-lg font-semibold rounded-full shadow-md hover:bg-warm-beige hover:shadow-lg transition duration-500 ease-in-out hover:scale-105">
+    View More Baskets →
+  </a>
+</div>
+
+
+  <!-- Vegan Collection -->
+<section class="py-20 px-6 bg-gradient-to-r from-transparent via-green-900 via-transparent to-transparent">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 id="vegan-title" class="text-4xl lg:text-5xl font-display font-bold text-golden-tan mb-4">
+        Vegan Collection
+      </h2>
+      <p class="text-xl text-muted-sage">Plant-based excellence for conscious living</p>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-8">
+
+      <!-- Coconut Milk -->
+      <div class="product-card rounded-2xl overflow-hidden bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="product-image w-full h-56">
+          <img src="images2/coco.jpg" alt="Coconut Milk" class="w-full h-full object-cover">
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-semibold text-warm-beige mb-2">Coconut Milk</h3>
+          <p class="text-sm text-muted-sage mb-3">Organic, unsweetened</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xl font-bold text-golden-tan">$3.99</span>
+            <button class="btn-secondary text-sm add-to-cart"
+              data-product='{"id":10,"name":"Coconut Milk","price":3.99,"image":"images/coconutmilk.jpg"}'>
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quinoa -->
+      <div class="product-card rounded-2xl overflow-hidden bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="product-image w-full h-56">
+          <img src="images2/quinoa.jpg" alt="Quinoa" class="w-full h-full object-cover">
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-semibold text-warm-beige mb-2">Quinoa</h3>
+          <p class="text-sm text-muted-sage mb-3">Organic tri-color blend</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xl font-bold text-golden-tan">$7.99</span>
+            <button class="btn-secondary text-sm add-to-cart"
+              data-product='{"id":11,"name":"Quinoa","price":7.99,"image":"images/quinoa.jpg"}'>
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Almond Butter -->
+      <div class="product-card rounded-2xl overflow-hidden bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="product-image w-full h-56">
+          <img src="images2/almond.jpg" alt="Almond Butter" class="w-full h-full object-cover">
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-semibold text-warm-beige mb-2">Almond Butter</h3>
+          <p class="text-sm text-muted-sage mb-3">Raw, unsalted</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xl font-bold text-golden-tan">$9.99</span>
+            <button class="btn-secondary text-sm add-to-cart"
+              data-product='{"id":12,"name":"Almond Butter","price":9.99,"image":"images/almondbutter.jpg"}'>
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mushroom Mix -->
+      <div class="product-card rounded-2xl overflow-hidden bg-dark-olive/80 border border-muted-sage/30 shadow-lg">
+        <div class="product-image w-full h-56">
+          <img src="images2/mushroom.jpg" alt="Mushroom Mix" class="w-full h-full object-cover">
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-semibold text-warm-beige mb-2">Mushroom Mix</h3>
+          <p class="text-sm text-muted-sage mb-3">Shiitake &amp; oyster blend</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xl font-bold text-golden-tan">$5.99</span>
+            <button class="btn-secondary text-sm add-to-cart"
+              data-product='{"id":13,"name":"Mushroom Mix","price":5.99,"image":"images/mushroommix.jpg"}'>
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<div class="flex justify-center">
+  <a href="#more-categories" class="px-10 py-4 bg-golden-tan text-dark-olive text-lg font-semibold rounded-full shadow-md hover:bg-warm-beige hover:shadow-lg transition duration-500 ease-in-out hover:scale-105">
+    View More Vegan Collections →
+  </a>
+</div>
+
+  
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6">
+   <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl lg:text-5xl font-display font-bold text-golden-tan mb-8">About First Basket</h2>
+    <p class="text-xl text-muted-sage leading-relaxed mb-8">First Basket was created to make fresh, healthy, and locally sourced groceries easily accessible. We partner with trusted farms and suppliers to bring quality right to your doorstep — with a touch of luxury.</p>
+    <p class="text-lg text-warm-beige leading-relaxed">Our commitment to excellence means every product is carefully selected, every delivery is handled with care, and every customer experience is crafted to exceed expectations. From farm to table, we ensure the highest standards of quality and freshness.</p>
+   </div>
+  </section><!-- FAQ Section -->
+  <section id="faq" class="py-20 px-6">
+   <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16">
+     <h2 class="text-4xl lg:text-5xl font-display font-bold text-golden-tan mb-4">Frequently Asked Questions</h2>
+     <p class="text-xl text-muted-sage">Everything you need to know about First Basket</p>
+    </div>
+    <div class="space-y-4">
+     <div class="faq-item"><button class="faq-question"> <span>What areas do you deliver to?</span> <i class="fas fa-chevron-down text-golden-tan"></i> </button>
+      <div class="faq-answer">
+       <div class="p-6 text-muted-sage">
+        We currently deliver to East-legon, Cantonments and Achimota. Same-day delivery is available for orders placed before 2 PM. We're expanding to more cities across Ghana.
+       </div>
+      </div>
+     </div>
+     <div class="faq-item"><button class="faq-question"> <span>How do you ensure product freshness?</span> <i class="fas fa-chevron-down text-golden-tan"></i> </button>
+      <div class="faq-answer">
+       <div class="p-6 text-muted-sage">
+        All products are sourced daily from trusted suppliers and local farms. We use temperature-controlled storage and delivery vehicles to maintain optimal freshness from farm to your door.
+       </div>
+      </div>
+     </div>
+     <div class="faq-item"><button class="faq-question"> <span>What payment methods do you accept?</span> <i class="fas fa-chevron-down text-golden-tan"></i> </button>
+      <div class="faq-answer">
+       <div class="p-6 text-muted-sage">
+        We accept mobile money (MTN, Vodafone, AirtelTigo), credit/debit cards, and cash on delivery. All online payments are secured with bank-level encryption.
+       </div>
+      </div>
+     </div>
+     <div class="faq-item"><button class="faq-question"> <span>Do you offer organic products?</span> <i class="fas fa-chevron-down text-golden-tan"></i> </button>
+      <div class="faq-answer">
+       <div class="p-6 text-muted-sage">
+        Yes! We specialize in organic and locally sourced products. All organic items are clearly labeled and certified by recognized organic certification bodies.
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer id="contact" class="py-16 px-6 border-t border-golden-tan border-opacity-20">
+   <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+     <div>
+      <div class="flex items-center space-x-3 mb-6">
+       <div class="w-12 h-12 bg-gradient-to-br from-golden-tan to-yellow-600 rounded-full flex items-center justify-center"><i class="fas fa-shopping-basket text-dark-olive text-xl"></i>
+       </div><span class="text-2xl font-display font-bold text-golden-tan">First Basket</span>
+      </div>
+      <p class="text-muted-sage mb-6">Premium groceries delivered with luxury and care across Ghana.</p>
+      <div class="flex space-x-4"><a href="#" class="text-muted-sage hover:text-golden-tan transition-colors"> <i class="fab fa-instagram text-2xl"></i> </a> <a href="#" class="text-muted-sage hover:text-golden-tan transition-colors"> <i class="fab fa-twitter text-2xl"></i> </a> <a href="#" class="text-muted-sage hover:text-golden-tan transition-colors"> <i class="fab fa-facebook text-2xl"></i> </a>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold text-warm-beige mb-4">Quick Links</h4>
+      <ul class="space-y-2">
+       <li><a href="#home" class="text-muted-sage hover:text-golden-tan transition-colors">Home</a></li>
+       <li><a href="#shop" class="text-muted-sage hover:text-golden-tan transition-colors">Shop</a></li>
+       <li><a href="#about" class="text-muted-sage hover:text-golden-tan transition-colors">About</a></li>
+       <li><a href="#faq" class="text-muted-sage hover:text-golden-tan transition-colors">FAQ</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold text-warm-beige mb-4">Support</h4>
+      <ul class="space-y-2">
+       <li><a href="#" class="text-muted-sage hover:text-golden-tan transition-colors">Help Center</a></li>
+       <li><a href="#" class="text-muted-sage hover:text-golden-tan transition-colors">Track Order</a></li>
+       <li><a href="#" class="text-muted-sage hover:text-golden-tan transition-colors">Returns</a></li>
+       <li><a href="#" class="text-muted-sage hover:text-golden-tan transition-colors">Contact Us</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold text-warm-beige mb-4">Contact Info</h4>
+      <div class="space-y-3">
+       <div class="flex items-center space-x-3"><i class="fas fa-phone text-golden-tan"></i> <span class="text-muted-sage">+233 20 123 4567</span>
+       </div>
+       <div class="flex items-center space-x-3"><i class="fas fa-envelope text-golden-tan"></i> <span class="text-muted-sage">hello@firstbasket.gh</span>
+       </div>
+       <div class="flex items-center space-x-3"><i class="fas fa-map-marker-alt text-golden-tan"></i> <span class="text-muted-sage">Accra, Ghana</span>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-golden-tan border-opacity-20 pt-8 text-center text-muted-sage">
+     <p>© 2025 First Basket. All rights reserved. | Privacy Policy | Terms of Service</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+        // Configuration object
+        const defaultConfig = {
+            hero_headline: "Fresh. Curated. Delivered.",
+            hero_cta: "Shop Now",
+            featured_title: "Featured Products",
+            categories_title: "Shop by Category",
+            baskets_title: "Curated Baskets",
+            vegan_title: "Vegan Collection",
+            background_color: "#1F1F1F",
+            surface_color: "#2A2A2A",
+            text_color: "#F5F2E8",
+            primary_action_color: "#C9A66B",
+            secondary_action_color: "#8B9A7A",
+            font_family: "Inter",
+            font_size: 16
+        };
+
+        // Cart functionality
+        let cart = [];
+        let cartTotal = 0;
+
+        function updateCartUI() {
+            const cartCount = document.querySelector('.cart-count');
+            const cartItems = document.querySelector('.cart-items');
+            const cartEmpty = document.querySelector('.cart-empty');
+            const cartTotalElement = document.querySelector('.cart-total');
+            
+            cartCount.textContent = cart.length;
+            cartTotalElement.textContent = `$${cartTotal.toFixed(2)}`;
+            
+            if (cart.length === 0) {
+                cartEmpty.classList.remove('hidden');
+                cartItems.innerHTML = '';
+            } else {
+                cartEmpty.classList.add('hidden');
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="flex items-center space-x-4 p-4 border border-golden-tan border-opacity-20 rounded-lg">
+                        <div class="text-2xl">${item.image}</div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-warm-beige">${item.name}</h4>
+                            <p class="text-golden-tan">$${item.price.toFixed(2)}</p>
+                        </div>
+                        <button class="remove-item text-red-400 hover:text-red-300" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function addToCart(product) {
+            cart.push(product);
+            cartTotal += product.price;
+            updateCartUI();
+            showToast(`${product.name} added to cart!`);
+        }
+
+        function removeFromCart(productId) {
+            const index = cart.findIndex(item => item.id === productId);
+            if (index > -1) {
+                cartTotal -= cart[index].price;
+                cart.splice(index, 1);
+                updateCartUI();
+            }
+        }
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Cart sidebar functionality
+        const cartToggle = document.querySelector('.cart-toggle');
+        const cartSidebar = document.querySelector('.cart-sidebar');
+        const cartOverlay = document.querySelector('.cart-overlay');
+        const cartClose = document.querySelector('.cart-close');
+
+        function openCart() {
+            cartSidebar.classList.add('open');
+            cartOverlay.classList.add('active');
+        }
+
+        function closeCart() {
+            cartSidebar.classList.remove('open');
+            cartOverlay.classList.remove('active');
+        }
+
+        cartToggle.addEventListener('click', openCart);
+        cartClose.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const carousel = document.getElementById('featured-carousel');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        const slidesToShow = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+
+        function updateCarousel() {
+            const slideWidth = 300 + 32; // slide width + margin
+            const offset = -currentSlide * slideWidth;
+            carousel.style.transform = `translateX(${offset}px)`;
+        }
+
+        document.querySelector('.carousel-btn.prev').addEventListener('click', () => {
+            currentSlide = Math.max(0, currentSlide - 1);
+            updateCarousel();
+        });
+
+        document.querySelector('.carousel-btn.next').addEventListener('click', () => {
+            const maxSlide = Math.max(0, totalSlides - slidesToShow);
+            currentSlide = Math.min(maxSlide, currentSlide + 1);
+            updateCarousel();
+        });
+
+        // Auto-advance carousel
+        setInterval(() => {
+            const maxSlide = Math.max(0, totalSlides - slidesToShow);
+            currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + 1;
+            updateCarousel();
+        }, 4000);
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                // Close other FAQs
+                document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+                    if (otherAnswer !== answer) {
+                        otherAnswer.classList.remove('active');
+                    }
+                });
+                
+                document.querySelectorAll('.faq-question i').forEach(otherIcon => {
+                    if (otherIcon !== icon) {
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                // Toggle current FAQ
+                answer.classList.toggle('active');
+                const isActive = answer.classList.contains('active');
+                icon.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+
+        // Add to cart functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.add-to-cart')) {
+                const button = e.target.closest('.add-to-cart');
+                const productData = JSON.parse(button.dataset.product);
+                addToCart(productData);
+            }
+            
+            if (e.target.closest('.remove-item')) {
+                const button = e.target.closest('.remove-item');
+                const productId = parseInt(button.dataset.id);
+                removeFromCart(productId);
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Search functionality
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            if (query.length > 2) {
+                showToast(`Searching for "${query}"...`);
+            }
+        });
+
+        // Category card interactions
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'translateY(-5px) scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                showToast('Loading category...');
+            });
+        });
+
+        // Button interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!this.classList.contains('add-to-cart') && !this.classList.contains('remove-item')) {
+                    const buttonText = this.textContent.trim();
+                    if (buttonText.includes('Shop Now')) {
+                        showToast('Redirecting to shop...');
+                    } else if (buttonText.includes('Checkout')) {
+                        showToast('Processing checkout...');
+                    }
+                }
+            });
+        });
+
+        // Toast notification system
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed top-20 right-4 bg-golden-tan text-dark-olive px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300 font-semibold';
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateX(full)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Loading animation for buttons
+        function showLoading(button) {
+            const originalText = button.textContent;
+            button.innerHTML = '<div class="loading-spinner mx-auto"></div>';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.disabled = false;
+            }, 1500);
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.product-card, .category-card, .trust-badge').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize cart UI
+        updateCartUI();
+
+        // Element SDK implementation
+        async function onConfigChange(config) {
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseSize = config.font_size || defaultConfig.font_size;
+            const baseFontStack = 'Inter, sans-serif';
+            
+            // Update text content
+            document.getElementById('hero-headline').textContent = config.hero_headline || defaultConfig.hero_headline;
+            document.getElementById('hero-cta').textContent = config.hero_cta || defaultConfig.hero_cta;
+            document.getElementById('featured-title').textContent = config.featured_title || defaultConfig.featured_title;
+            document.getElementById('categories-title').textContent = config.categories_title || defaultConfig.categories_title;
+            document.getElementById('baskets-title').textContent = config.baskets_title || defaultConfig.baskets_title;
+            document.getElementById('vegan-title').textContent = config.vegan_title || defaultConfig.vegan_title;
+            
+            // Update colors
+            document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
+            document.body.style.color = config.text_color || defaultConfig.text_color;
+            
+            // Update fonts
+            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            document.body.style.fontSize = `${baseSize}px`;
+            
+            // Scale headings proportionally
+            document.querySelectorAll('h1').forEach(el => {
+                el.style.fontSize = `${baseSize * 4}px`;
+                el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            });
+            
+            document.querySelectorAll('h2').forEach(el => {
+                el.style.fontSize = `${baseSize * 3}px`;
+                el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            });
+            
+            document.querySelectorAll('h3').forEach(el => {
+                el.style.fontSize = `${baseSize * 1.5}px`;
+                el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            });
+        }
+
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.background_color || defaultConfig.background_color,
+                            set: (value) => {
+                                config.background_color = value;
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.surface_color || defaultConfig.surface_color,
+                            set: (value) => {
+                                config.surface_color = value;
+                                window.elementSdk.setConfig({ surface_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.text_color || defaultConfig.text_color,
+                            set: (value) => {
+                                config.text_color = value;
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                            set: (value) => {
+                                config.primary_action_color = value;
+                                window.elementSdk.setConfig({ primary_action_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                            set: (value) => {
+                                config.secondary_action_color = value;
+                                window.elementSdk.setConfig({ secondary_action_color: value });
+                            }
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: {
+                        get: () => config.font_family || defaultConfig.font_family,
+                        set: (value) => {
+                            config.font_family = value;
+                            window.elementSdk.setConfig({ font_family: value });
+                        }
+                    },
+                    fontSizeable: {
+                        get: () => config.font_size || defaultConfig.font_size,
+                        set: (value) => {
+                            config.font_size = value;
+                            window.elementSdk.setConfig({ font_size: value });
+                        }
+                    }
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["hero_headline", config.hero_headline || defaultConfig.hero_headline],
+                    ["hero_cta", config.hero_cta || defaultConfig.hero_cta],
+                    ["featured_title", config.featured_title || defaultConfig.featured_title],
+                    ["categories_title", config.categories_title || defaultConfig.categories_title],
+                    ["baskets_title", config.baskets_title || defaultConfig.baskets_title],
+                    ["vegan_title", config.vegan_title || defaultConfig.vegan_title]
+                ])
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'996ac3da74959345',t:'MTc2MTgyNTc2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
