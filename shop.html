@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" class="h-full">
  <head>
+<link rel="stylesheet" href="navigation.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -400,66 +401,104 @@
                 width: 100%;
             }
         }
+
+        /* Hero Section Background */
+#hero {
+  background-image: url("images2/hero-bg1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Optional overlay for better text contrast */
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* dark overlay */
+  z-index: 0;
+}
+
+#hero > div {
+  position: relative;
+  z-index: 1; /* makes sure your text appears above the overlay */
+}
+.category-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* Adjust spacing (e.g., 1rem, 2rem, etc.) */
+}
+
+.separator {
+  margin: 0 1rem; /* Adds space around the separator */
+}
+
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full"><!-- Navigation -->
-  <nav class="navbar fixed top-0 w-full z-50 px-6 py-4">
-   <div class="max-w-7xl mx-auto flex items-center justify-between">
-    <div class="flex items-center space-x-3">
-     <div class="w-12 h-12 bg-gradient-to-br from-golden-tan to-yellow-600 rounded-full flex items-center justify-center"><i class="fas fa-shopping-basket text-dark-olive text-xl"></i>
-     </div><span class="text-2xl font-display font-bold text-golden-tan">First Basket</span>
-    </div><!-- Desktop Navigation -->
-    <div class="hidden lg:flex items-center space-x-8"><a href="index.html" class="text-warm-beige hover:text-golden-tan transition-colors">Home</a> <a href="#" class="text-golden-tan font-semibold border-b-2 border-golden-tan transition-colors">Shop</a> <a href="#" class="text-warm-beige hover:text-golden-tan transition-colors">About</a> <a href="#" class="text-warm-beige hover:text-golden-tan transition-colors">FAQ</a> <a href="#" class="text-warm-beige hover:text-golden-tan transition-colors">Contact</a> <a href="#" class="text-warm-beige hover:text-golden-tan transition-colors flex items-center"> <i class="fas fa-user mr-2"></i>Account </a>
-    </div><!-- Search & Cart -->
-    <div class="hidden md:flex items-center space-x-4">
-     <div class="search-container"><input type="text" class="search-input w-80" placeholder="Search products..." id="main-search"> <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-golden-tan"></i>
-     </div><button class="cart-toggle relative p-2"> <i class="fas fa-shopping-cart text-2xl text-golden-tan"></i> <span class="cart-count absolute -top-1 -right-1 bg-golden-tan text-dark-olive text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">0</span> </button>
-    </div><!-- Mobile Menu Button --> <button class="lg:hidden mobile-menu-btn"> <i class="fas fa-bars text-2xl text-golden-tan"></i> </button>
-   </div>
-  </nav><!-- Mobile Menu -->
-  <div class="mobile-menu">
-   <div class="p-6">
-    <div class="flex justify-between items-center mb-8"><span class="text-2xl font-display font-bold text-golden-tan">First Basket</span> <button class="mobile-menu-close"> <i class="fas fa-times text-2xl text-golden-tan"></i> </button>
-    </div>
-    <div class="space-y-6"><a href="index.html" class="block text-xl text-warm-beige mobile-nav-link">Home</a> <a href="#" class="block text-xl text-golden-tan font-semibold mobile-nav-link">Shop</a> <a href="#" class="block text-xl text-warm-beige mobile-nav-link">About</a> <a href="#" class="block text-xl text-warm-beige mobile-nav-link">FAQ</a> <a href="#" class="block text-xl text-warm-beige mobile-nav-link">Contact</a> <a href="#" class="block text-xl text-warm-beige mobile-nav-link flex items-center"> <i class="fas fa-user mr-2"></i>Account </a>
-    </div><!-- Mobile Search -->
-    <div class="mt-8">
-     <div class="search-container"><input type="text" class="search-input" placeholder="Search products..." id="mobile-search"> <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-golden-tan"></i>
-     </div>
-    </div>
-   </div>
-  </div><!-- Cart Sidebar -->
-  <div class="cart-overlay"></div>
-  <div class="cart-sidebar">
-   <div class="p-6">
-    <div class="flex justify-between items-center mb-6">
-     <h3 class="text-2xl font-display font-bold text-golden-tan">Your Cart</h3><button class="cart-close"> <i class="fas fa-times text-xl text-golden-tan"></i> </button>
-    </div>
-    <div class="cart-items space-y-4"><!-- Cart items will be populated here -->
-    </div>
-    <div class="cart-empty text-center py-12"><i class="fas fa-shopping-cart text-6xl text-muted-sage mb-4"></i>
-     <p class="text-muted-sage text-lg">Your cart is empty</p>
-     <p class="text-sm text-muted-sage mt-2">Add some delicious items to get started!</p>
-    </div>
-    <div class="cart-footer mt-8 pt-6 border-t border-golden-tan border-opacity-30 hidden">
-     <div class="flex justify-between items-center mb-4"><span class="text-lg font-semibold">Total:</span> <span class="cart-total text-2xl font-bold text-golden-tan">$0.00</span>
-     </div><button class="btn-primary w-full">Checkout</button>
-    </div>
-   </div>
-  </div><!-- Main Content -->
-  <main class="pt-24"><!-- Hero / Intro Section -->
-   <section class="py-16 px-6 bg-gradient-to-r from-transparent via-purple-900 via-transparent to-transparent">
-    <div class="max-w-7xl mx-auto text-center">
-     <h1 id="welcome-title" class="text-5xl lg:text-6xl font-display font-bold text-golden-tan mb-6">Welcome to First Basket</h1>
-     <p id="welcome-subtitle" class="text-xl lg:text-2xl text-muted-sage mb-8 max-w-3xl mx-auto">Discover premium groceries across 11 curated categories</p><!-- Search Bar -->
-     <div class="max-w-md mx-auto">
-      <div class="search-container"><input type="text" class="search-input" placeholder="Search products, categories, or dietary preferences..." id="hero-search"> <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-golden-tan"></i>
+ <body class="h-full">
+    <script src="navigation.js"></script>
+    <script>
+    FirstBasket.initNavigation('shop'); // Change based on page
+  </script>
+
+
+    
+    
+  <!-- Main Content -->
+  <main class="pt-24">
+    
+    <!-- Hero / Intro Section -->
+<section id="hero" class="py-24 px-6 relative bg-gradient-to-r from-transparent via-purple-900 via-transparent to-transparent">
+  <div class="max-w-7xl mx-auto text-center space-y-10">
+    <h1 id="welcome-title" class="text-5xl lg:text-6xl font-display font-bold text-warm-beige tracking-wide">
+      Hi! What do you want to eat today?
+    </h1>
+
+    <p id="welcome-subtitle" class="text-xl lg:text-2xl text-golden-tan max-w-3xl mx-auto leading-relaxed">
+      Explore our 11 curated categories
+    </p>
+
+    <!-- Search Bar -->
+    <div class="max-w-md mx-auto mt-10 mb-8">
+      <div class="relative search-container">
+        <input type="text" class="search-input w-full py-4 px-5 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-golden-tan"
+               placeholder="Search products..." id="hero-search">
+        <i class="fas fa-search absolute right-5 top-1/2 transform -translate-y-1/2 text-golden-tan text-xl"></i>
       </div>
-     </div><button id="cta-button" class="btn-primary text-lg px-8 py-3"> Start Shopping Today </button>
     </div>
-   </section><!-- Product Display Section (Main Content) -->
+
+
+    <!-- Category -->
+<div class="category-row mt-12">
+  <a href="#harvest-table" class="category-link">The Harvest Table</a>
+  <span class="separator">| </span>
+  <a href="#butchers-block" class="category-link">The Butcher’s Block</a>
+  <span class="separator">| </span>
+  <a href="#bakers-craft" class="category-link">The Baker’s Craft</a>
+  <span class="separator">|</span>
+  <a href="#pantry-alchemy" class="category-link">Pantry Alchemy</a>
+</div>
+
+
+
+    <div class="mt-12">
+      <button id="cta-button" class="btn-primary text-lg px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition duration-300">
+        Browse All Products
+      </button>
+    </div>
+  </div>
+</section>
+
+
+   <!-- Product Display Section (Main Content) -->
    <section class="py-12 px-6">
     <div class="max-w-7xl mx-auto flex gap-8"><!-- Filter Drawer (Hidden by default) -->
      <aside class="filter-sidebar fixed top-0 left-0 w-80 h-full p-6 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out">
@@ -467,15 +506,19 @@
        <h2 class="text-xl font-display font-bold text-golden-tan">Filters</h2>
        <div class="flex items-center space-x-4"><button id="clear-filters" class="text-sm text-muted-sage hover:text-golden-tan transition-colors focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50 rounded px-2 py-1" aria-label="Clear all filters">Clear All</button> <button class="filter-close focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50 rounded p-1" aria-label="Close filters"> <i class="fas fa-times text-xl text-golden-tan"></i> </button>
        </div>
-      </div><!-- Active Filters Display -->
+      </div>
+      <!-- Active Filters Display -->
       <div id="active-filters" class="mb-6 hidden" role="status" aria-live="polite">
        <h3 class="text-sm font-semibold text-warm-beige mb-3">Active Filters:</h3>
        <div id="active-filters-list" class="flex flex-wrap gap-2"></div>
-      </div><!-- Category Filter -->
+      </div>
+
+      <!-- Category Filter -->
       <fieldset class="mb-8"><legend class="text-lg font-semibold text-warm-beige mb-4">Category</legend>
-       <div class="space-y-2 max-h-64 overflow-y-auto"><label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="all" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" checked> <span class="text-muted-sage">All Categories</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="harvest-table" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🥬 The Harvest Table</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="butchers-block" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🥩 The Butcher's Block</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="bakers-craft" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🥖 The Baker's Craft</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="pantry-alchemy" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🍯 Pantry Alchemy</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="creamery-curd" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🧀 Creamery &amp; Curd</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="sip-savor" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">☕ Sip &amp; Savor</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="grain-house" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🌾 The Grain House</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="ghanaian-corner" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🌶️ The Ghanaian Corner</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="vegan-collection" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🌱 The Vegan Collection</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="baby-family" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">👶 Baby &amp; Family Care</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="snacks-treats" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage">🍫 Snacks &amp; Treats</span> </label>
+       <div class="space-y-2 max-h-64 overflow-y-auto"><label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="all" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" checked> <span class="text-muted-sage">All Categories</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="harvest-table" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> The Harvest Table</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="butchers-block" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> The Butcher's Block</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="bakers-craft" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> The Baker's Craft</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="pantry-alchemy" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> Pantry Alchemy</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="creamery-curd" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> Creamery &amp; Curd</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="sip-savor" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> Sip & Savor</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="grain-house" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> The Grain House</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="ghanaian-corner" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> The Ghanaian Corner</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="vegan-collection" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> The Vegan Collection</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="baby-family" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> Baby &amp; Family Care</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="radio" name="category" value="snacks-treats" class="text-golden-tan focus:ring-golden-tan focus:ring-opacity-50"> <span class="text-muted-sage"> Snacks &amp; Treats</span> </label>
        </div>
-      </fieldset><!-- Price Range Filter -->
+      </fieldset>
+      <!-- Price Range Filter -->
       <fieldset class="mb-8"><legend class="text-lg font-semibold text-warm-beige mb-4">Price Range</legend>
        <div class="space-y-4">
         <div class="flex justify-between text-sm text-muted-sage" aria-live="polite"><span>$<span id="min-price-display">0</span></span> <span>$<span id="max-price-display">50</span></span>
@@ -485,16 +528,19 @@
         <div class="flex gap-2 items-center"><label for="min-price-input" class="sr-only">Minimum price</label> <input type="number" id="min-price-input" class="w-20 px-2 py-1 bg-dark-olive border border-golden-tan border-opacity-30 rounded text-warm-beige text-sm focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50" placeholder="Min" min="0" max="50"> <span class="text-muted-sage">to</span> <label for="max-price-input" class="sr-only">Maximum price</label> <input type="number" id="max-price-input" class="w-20 px-2 py-1 bg-dark-olive border border-golden-tan border-opacity-30 rounded text-warm-beige text-sm focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50" placeholder="Max" min="0" max="50">
         </div>
        </div>
-      </fieldset><!-- Dietary & Special Attributes -->
+      </fieldset>
+      <!-- Dietary & Special Attributes -->
       <fieldset class="mb-8"><legend class="text-lg font-semibold text-warm-beige mb-4">Special Attributes</legend>
-       <div class="space-y-3"><label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="dietary-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="organic"> <span class="text-muted-sage">🌿 Organic</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="dietary-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="vegan"> <span class="text-muted-sage">🌱 Vegan</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="dietary-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="gluten-free"> <span class="text-muted-sage">🌾 Gluten-Free</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="source-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="local"> <span class="text-muted-sage">📍 Local Farms</span> </label>
+       <div class="space-y-3"><label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="dietary-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="organic"> <span class="text-muted-sage">Organic</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="dietary-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="vegan"> <span class="text-muted-sage"> Vegan</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="dietary-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="gluten-free"> <span class="text-muted-sage"> Gluten-Free</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="source-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="local"> <span class="text-muted-sage"> Local Farms</span> </label>
        </div>
-      </fieldset><!-- Availability -->
+      </fieldset>
+      <!-- Availability -->
       <fieldset class="mb-8"><legend class="text-lg font-semibold text-warm-beige mb-4">Availability</legend>
-       <div class="space-y-3"><label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="availability-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="in-stock"> <span class="text-muted-sage">✅ In Stock Only</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="availability-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="same-day"> <span class="text-muted-sage">🚚 Same Day Delivery</span> </label>
+       <div class="space-y-3"><label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="availability-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="in-stock"> <span class="text-muted-sage"> In Stock Only</span> </label> <label class="flex items-center space-x-3 cursor-pointer hover:bg-golden-tan hover:bg-opacity-10 rounded p-2 transition-colors"> <input type="checkbox" class="availability-filter text-golden-tan focus:ring-golden-tan focus:ring-opacity-50" value="same-day"> <span class="text-muted-sage">Same Day Delivery</span> </label>
        </div>
-      </fieldset><!-- Sort Options -->
-      <div class="mb-8"><label for="sort-select" class="block text-lg font-semibold text-warm-beige mb-4">Sort By</label> <select class="w-full bg-dark-olive border border-golden-tan border-opacity-30 rounded-lg px-4 py-2 text-warm-beige focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50" id="sort-select"> <option value="featured">✨ Featured</option> <option value="price-low">💰 Price: Low to High</option> <option value="price-high">💎 Price: High to Low</option> <option value="name">🔤 Name A-Z</option> <option value="category">📂 Category</option> </select>
+      </fieldset>
+      <!-- Sort Options -->
+      <div class="mb-8"><label for="sort-select" class="block text-lg font-semibold text-warm-beige mb-4">Sort By</label> <select class="w-full bg-dark-olive border border-golden-tan border-opacity-30 rounded-lg px-4 py-2 text-warm-beige focus:outline-none focus:ring-2 focus:ring-golden-tan focus:ring-opacity-50" id="sort-select"> <option value="featured">Featured</option> <option value="price-low">Price: Low to High</option> <option value="price-high">Price: High to Low</option> <option value="name"> Name A-Z</option> <option value="category"> Category</option> </select>
       </div>
      </aside><!-- Filter Toggle Button --> <button id="filter-toggle-btn" class="fixed top-28 left-6 bg-golden-tan text-dark-olive px-4 py-2 rounded-lg shadow-lg z-40 flex items-center space-x-2 hover:bg-opacity-90 transition-all"> <i class="fas fa-filter"></i> <span class="font-semibold">Filters</span> </button> <!-- Filter Drawer Overlay -->
      <div class="filter-overlay fixed inset-0 bg-black bg-opacity-50 backdrop-filter backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300"></div><!-- Main Products Area -->
@@ -506,7 +552,8 @@
         <div class="flex border border-golden-tan border-opacity-30 rounded-lg overflow-hidden"><button class="view-toggle active px-3 py-2 bg-golden-tan text-dark-olive" data-view="grid"> <i class="fas fa-th"></i> </button> <button class="view-toggle px-3 py-2 bg-dark-olive text-golden-tan" data-view="list"> <i class="fas fa-list"></i> </button>
         </div>
        </div>
-      </div><!-- Products Container -->
+      </div>
+      <!-- Products Container -->
       <div id="products-container" class="min-h-96"><!-- Products will be populated here by JavaScript -->
       </div><!-- Pagination -->
       <div id="pagination-container" class="flex justify-center items-center space-x-2 mt-12"><!-- Pagination will be populated here by JavaScript -->
@@ -560,16 +607,18 @@
      </div>
     </div>
     <div class="border-t border-golden-tan border-opacity-20 pt-8 text-center text-muted-sage">
-     <p>© 2024 First Basket. All rights reserved. | Privacy Policy | Terms of Service</p>
+     <p>© 2025 First Basket. All rights reserved. | Privacy Policy | Terms of Service</p>
     </div>
    </div>
   </footer>
   <script>
+
+    
         // Configuration object
         const defaultConfig = {
-            welcome_title: "Welcome to First Basket",
-            welcome_subtitle: "Discover premium groceries across 11 curated categories",
-            cta_text: "Start Shopping Today",
+            welcome_title: "Hi! What do you want to eat today?",
+            welcome_subtitle: "Explore our 11 curated categories",
+            cta_text: "Browse All Products",
             background_color: "#1F1F1F",
             surface_color: "#2A2A2A",
             text_color: "#F5F2E8",
@@ -587,70 +636,72 @@
         // Product Database - 11 Categories
         const productsDatabase = [
             // The Harvest Table (Fresh Produce)
-            { id: 1, name: "Organic Avocados", price: 4.99, image: "images2/beef.jpg", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan", "local"], inStock: true, sameDayDelivery: true, description: "Creamy, ripe avocados from local farms" },
-            { id: 2, name: "Organic Strawberries", price: 6.99, image: "🍓", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Sweet, juicy berries picked fresh daily" },
-            { id: 3, name: "Fresh Spinach", price: 3.49, image: "🥬", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan", "local"], inStock: true, sameDayDelivery: true, description: "Baby spinach leaves" },
-            { id: 4, name: "Bell Peppers", price: 4.49, image: "🫑", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Colorful bell pepper mix" },
-            { id: 5, name: "Organic Tomatoes", price: 5.49, image: "🍅", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan", "local"], inStock: true, sameDayDelivery: true, description: "Vine-ripened heirloom tomatoes" },
+            { id: 1, name: "Organic Avocados", price: 4.99, image: "images2/avocados.jpg", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan", "local"], inStock: true, sameDayDelivery: true, description: "Creamy, ripe avocados from local farms" },
+            { id: 2, name: "Organic Strawberries", price: 6.99, image: "images2/organicstraw.jpg", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Sweet, juicy berries picked fresh daily" },
+            { id: 3, name: "Fresh Spinach", price: 3.49, image: "images2/freshspin.jpg",category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan", "local"], inStock: true, sameDayDelivery: true, description: "Baby spinach leaves" },
+            { id: 4, name: "Bell Peppers", price: 4.49, image: "images2/bell.jpg", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Colorful bell pepper mix" },
+            { id: 5, name: "Organic Tomatoes", price: 5.49, image: "images2/tomatoes.jpg", category: "harvest-table", categoryName: "The Harvest Table", tags: ["organic", "vegan", "local"], inStock: true, sameDayDelivery: true, description: "Vine-ripened heirloom tomatoes" },
             
             // The Butcher's Block (Premium Meat)
-            { id: 6, name: "Premium Beef Steaks", price: 24.99, image: "🥩", category: "butchers-block", categoryName: "The Butcher's Block", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Grass-fed, locally sourced premium cuts" },
-            { id: 7, name: "Free-Range Chicken", price: 18.99, image: "🐔", category: "butchers-block", categoryName: "The Butcher's Block", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Organic free-range chicken breast" },
-            { id: 8, name: "Wild Salmon Fillets", price: 28.99, image: "🐟", category: "butchers-block", categoryName: "The Butcher's Block", tags: [], inStock: true, sameDayDelivery: false, description: "Fresh Atlantic salmon fillets" },
-            { id: 9, name: "Lamb Chops", price: 32.99, image: "🐑", category: "butchers-block", categoryName: "The Butcher's Block", tags: ["local"], inStock: false, sameDayDelivery: false, description: "Premium grass-fed lamb chops" },
-            
+            { id: 6, name: "Premium Beef Steaks", price: 24.99, image: "images2/steaks.jpg", category: "butchers-block", categoryName: "The Butcher's Block", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Grass-fed, locally sourced premium cuts" },
+            { id: 7, name: "Free-Range Chicken", price: 18.99, image: "images2/chicken.jpg", category: "butchers-block", categoryName: "The Butcher's Block", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Organic free-range chicken breast" },
+            { id: 8, name: "Wild Salmon Fillets", price: 28.99, image: "images2/salmon.jpg", category: "butchers-block", categoryName: "The Butcher's Block", tags: [], inStock: true, sameDayDelivery: false, description: "Fresh Atlantic salmon fillets" },
+            { id: 9, name: "Lamb Chops", price: 32.99, image: "images2/lmabchops.jpg", category: "butchers-block", categoryName: "The Butcher's Block", tags: ["local"], inStock: false, sameDayDelivery: false, description: "Premium grass-fed lamb chops" },
+
             // The Baker's Craft (Fresh Bakery)
-            { id: 10, name: "Artisan Sourdough", price: 5.99, image: "🥖", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Fresh-baked artisan sourdough loaves" },
-            { id: 11, name: "Butter Croissants", price: 8.99, image: "🥐", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Buttery French croissants" },
-            { id: 12, name: "Whole Grain Bread", price: 4.99, image: "🍞", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Nutritious whole grain loaf" },
-            { id: 13, name: "Everything Bagels", price: 6.99, image: "🥯", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Fresh-baked everything bagels" },
-            
+            { id: 10, name: "Artisan Sourdough", price: 5.99, image: "images2/artisanbread.jpg", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Fresh-baked artisan sourdough loaves" },
+            { id: 11, name: "Butter Croissants", price: 8.99, image: "images2/croissant.jpg", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Buttery French croissants" },
+            { id: 12, name: "Whole Grain Bread", price: 4.99, image: "images2/wheat.jpg", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Nutritious whole grain loaf" },
+            { id: 13, name: "Everything Bagels", price: 6.99, image: "images2/bagels.jpg", category: "bakers-craft", categoryName: "The Baker's Craft", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Fresh-baked everything bagels" },
+
             // Pantry Alchemy (Pantry Essentials)
-            { id: 14, name: "Raw Honey", price: 8.99, image: "🍯", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Pure, unfiltered honey from local hives" },
-            { id: 15, name: "Extra Virgin Olive Oil", price: 12.99, image: "🫒", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Cold-pressed Mediterranean olive oil" },
-            { id: 16, name: "Himalayan Sea Salt", price: 4.99, image: "🧂", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Pink Himalayan sea salt" },
-            { id: 17, name: "Artisan Pasta", price: 6.99, image: "🍝", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Fresh fettuccine pasta" },
-            
+            { id: 14, name: "Raw Honey", price: 8.99, image: "images2/localhoney.jpg", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Pure, unfiltered honey from local hives" },
+            { id: 15, name: "Extra Virgin Olive Oil", price: 12.99, image: "images2/oliveoil.jpg", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Cold-pressed Mediterranean olive oil" },
+            { id: 16, name: "Himalayan Sea Salt", price: 4.99, image: "images2/seasalt.jpg", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Pink Himalayan sea salt" },
+            { id: 17, name: "Artisan Pasta", price: 6.99, image: "images2/pasta.jpg", category: "pantry-alchemy", categoryName: "Pantry Alchemy", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Fresh fettuccine pasta" },
+
             // Creamery & Curd (Dairy & Cheese)
-            { id: 18, name: "Artisan Cheese Selection", price: 12.99, image: "🧀", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Handcrafted cheese from local artisans" },
-            { id: 19, name: "Greek Yogurt", price: 5.99, image: "🥛", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Thick, creamy Greek yogurt" },
-            { id: 20, name: "Farm Fresh Eggs", price: 4.49, image: "🥚", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Free-range organic eggs" },
-            { id: 21, name: "Organic Butter", price: 6.99, image: "🧈", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Churned from grass-fed cream" },
-            
+            { id: 18, name: "Aged cheddar", price: 12.99, image: "images2/agedcheddar.jpg", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["local"], inStock: true, sameDayDelivery: true, description: "Handcrafted cheese from local artisans" },
+            { id: 19, name: "Greek Yogurt", price: 5.99, image: "images2/greekyogurt.jpg", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Thick, creamy Greek yogurt" },
+            { id: 20, name: "Farm Fresh Eggs", price: 4.49, image: "images2/eggs.jpg", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Free-range organic eggs" },
+            { id: 21, name: "Organic Butter", price: 6.99, image: "images2/butter.jpg", category: "creamery-curd", categoryName: "Creamery & Curd", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Churned from grass-fed cream" },
+
             // Sip & Savor (Beverages)
-            { id: 22, name: "Cold-Pressed Juices", price: 7.99, image: "🧃", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Fresh cold-pressed vegetable juices" },
-            { id: 23, name: "Artisan Coffee Beans", price: 15.99, image: "☕", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Single-origin coffee beans" },
-            { id: 24, name: "Herbal Tea Collection", price: 9.99, image: "🍵", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Premium herbal tea blends" },
-            { id: 25, name: "Coconut Water", price: 4.99, image: "🥥", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Pure coconut water" },
-            
+            { id: 22, name: "Cold-Pressed Juices", price: 7.99, image: "images2/pjuice.jpg", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Fresh cold-pressed vegetable juices" },
+            { id: 23, name: "Artisan Coffee Beans", price: 15.99, image: "images2/coffee.jpg", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "local"], inStock: true, sameDayDelivery: true, description: "Single-origin coffee beans" },
+            { id: 24, name: "Herbal Tea Collection", price: 9.99, image: "images2/tea.jpg", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Premium herbal tea blends" },
+            { id: 25, name: "Coconut Water", price: 4.99, image: "images2/coco.jpg", category: "sip-savor", categoryName: "Sip & Savor", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Pure coconut water" },
+
             // The Grain House (Grains & Cereals)
-            { id: 26, name: "Organic Quinoa", price: 7.99, image: "🌾", category: "grain-house", categoryName: "The Grain House", tags: ["organic", "vegan", "gluten-free"], inStock: true, sameDayDelivery: true, description: "Tri-color quinoa blend" },
-            { id: 27, name: "Basmati Rice", price: 8.49, image: "🍚", category: "grain-house", categoryName: "The Grain House", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Premium aged basmati rice" },
-            { id: 28, name: "Steel-Cut Oats", price: 5.99, image: "🥣", category: "grain-house", categoryName: "The Grain House", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Hearty steel-cut oats" },
-            { id: 29, name: "Ancient Grain Mix", price: 9.99, image: "🌾", category: "grain-house", categoryName: "The Grain House", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Farro, barley & wheat berries" },
-            
+            { id: 26, name: "Organic Quinoa", price: 7.99, image: "images2/quinoa.jpg", category: "grain-house", categoryName: "The Grain House", tags: ["organic", "vegan", "gluten-free"], inStock: true, sameDayDelivery: true, description: "Tri-color quinoa blend" },
+            { id: 27, name: "Basmati Rice", price: 8.49, image: "images2/rice.jpg", category: "grain-house", categoryName: "The Grain House", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Premium aged basmati rice" },
+            { id: 28, name: "Steel-Cut Oats", price: 5.99, image: "images2/oats.jpg", category: "grain-house", categoryName: "The Grain House", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Hearty steel-cut oats" },
+            { id: 29, name: "Ancient Grain Mix", price: 9.99, image: "images2/grain.jpg", category: "grain-house", categoryName: "The Grain House", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Farro, barley & wheat berries" },
+
             // The Ghanaian Corner (Local Specialties)
-            { id: 30, name: "Palm Nut Soup Base", price: 6.99, image: "🥥", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Authentic palm nut concentrate" },
-            { id: 31, name: "Kelewele Spice Mix", price: 4.99, image: "🌶️", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Traditional kelewele seasoning" },
-            { id: 32, name: "Shito Pepper Sauce", price: 8.99, image: "🌶️", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Spicy Ghanaian pepper sauce" },
-            { id: 33, name: "Plantain Chips", price: 5.99, image: "🍌", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Crispy plantain chips" },
-            
+            { id: 30, name: "Palm Nut Soup Base", price: 6.99, image: "images2/palmnut.jpg", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Authentic palm nut concentrate" },
+            { id: 31, name: "Kelewele Spice Mix", price: 4.99, image: "images2/kelewele.jpg", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Traditional kelewele seasoning" },
+            { id: 32, name: "Shito Pepper Sauce", price: 8.99, image: "images2/shito.jpg", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Spicy Ghanaian pepper sauce" },
+            { id: 33, name: "Plantain Chips", price: 5.99, image: "images2/plantainchips.jpg", category: "ghanaian-corner", categoryName: "The Ghanaian Corner", tags: ["local", "vegan"], inStock: true, sameDayDelivery: true, description: "Crispy plantain chips" },
+
             // The Vegan Collection
-            { id: 34, name: "Almond Butter", price: 9.99, image: "🥜", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Raw, unsalted almond butter" },
-            { id: 35, name: "Coconut Milk", price: 3.99, image: "🥥", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Organic, unsweetened coconut milk" },
-            { id: 36, name: "Nutritional Yeast", price: 7.99, image: "🧀", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Cheesy nutritional yeast flakes" },
-            { id: 37, name: "Cashew Cream", price: 8.99, image: "🥜", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Rich cashew cream" },
+            { id: 34, name: "Almond Butter", price: 9.99, image: "images2/almond.jpg", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Raw, unsalted almond butter" },
+            { id: 35, name: "Tofu Blocks", price: 4.99, image: "images2/tofu.jpg", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Firm organic tofu" },
+            { id: 36, name: "Chickpea Flour", price: 6.99, image: "images2/chickpea.jpg", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan", "gluten-free"], inStock: true, sameDayDelivery: true, description: "Gluten-free chickpea flour" },
+            { id: 37, name: "Cashew Cream", price: 8.99, image: "images2/cashewcream.jpg", category: "vegan-collection", categoryName: "The Vegan Collection", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Rich cashew cream" },
             
-            // Baby & Family Care
-            { id: 38, name: "Organic Baby Food", price: 12.99, image: "👶", category: "baby-family", categoryName: "Baby & Family Care", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Pureed organic baby food variety pack" },
-            { id: 39, name: "Natural Baby Wipes", price: 8.99, image: "🧻", category: "baby-family", categoryName: "Baby & Family Care", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Gentle, chemical-free baby wipes" },
-            { id: 40, name: "Family Multivitamins", price: 15.99, image: "💊", category: "baby-family", categoryName: "Baby & Family Care", tags: ["organic"], inStock: true, sameDayDelivery: true, description: "Natural family vitamin supplements" },
-            
+            // Baby Food
+            { id: 41, name: "Rice Cereal for Babies", price: 8.99, image: "images2/ricecereal.jpg", category: "baby-family", categoryName: "Baby Food", tags: ["cereal", "gluten-free"], inStock: true, sameDayDelivery: true, description: "Iron-fortified rice cereal ideal for first solid food introduction" },
+            { id: 39, name: "Banana & Apple Puree", price: 9.99, image: "images2/banana.jpg", category: "baby-family", categoryName: "Baby Food", tags: ["fruit", "puree"], inStock: true, sameDayDelivery: true, description: "Smooth banana and apple puree for infants aged 6+ months" },
+            { id: 40, name: "Carrot & Sweet Potato Puree", price: 10.49, image: "images2/puree.jpg", category: "baby-family", categoryName: "Baby Food", tags: ["vegetable", "puree"], inStock: true, sameDayDelivery: false, description: "Nutrient-rich carrot and sweet potato blend for growing babies" },
+
+
+
             // Snacks & Treats
-            { id: 41, name: "Dark Chocolate", price: 6.99, image: "🍫", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "70% dark chocolate bars" },
-            { id: 42, name: "Mixed Nuts", price: 9.99, image: "🥜", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Premium mixed nuts" },
-            { id: 43, name: "Dried Fruit Mix", price: 7.99, image: "🍇", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Unsweetened dried fruit medley" },
-            { id: 44, name: "Granola Bars", price: 8.99, image: "🍪", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Homemade granola bars" }
+            { id: 41, name: "Dark Chocolate", price: 6.99, image: "images2/chocolate.jpg", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "70% dark chocolate bars" },
+            { id: 42, name: "Mixed Nuts", price: 9.99, image: "images2/nuts.jpg", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Premium mixed nuts" },
+            { id: 43, name: "Dried Fruit Mix", price: 7.99, image: "images2/dried.jpg", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Unsweetened dried fruit medley" },
+            { id: 44, name: "Granola Bars", price: 8.99, image: "images2/granola.jpg", category: "snacks-treats", categoryName: "Snacks & Treats", tags: ["organic", "vegan"], inStock: true, sameDayDelivery: true, description: "Homemade granola bars" }
         ];
 
         // Cart functionality
@@ -825,19 +876,19 @@
             
             // Dietary filters
             activeFilters.dietary.forEach(diet => {
-                const labels = { organic: '🌿 Organic', vegan: '🌱 Vegan', 'gluten-free': '🌾 Gluten-Free' };
+                const labels = { organic: ' Organic', vegan: ' Vegan', 'gluten-free': ' Gluten-Free' };
                 activeFiltersArray.push({ type: 'dietary', label: labels[diet] || diet, value: diet });
             });
             
             // Availability filters
             activeFilters.availability.forEach(avail => {
-                const labels = { 'in-stock': '✅ In Stock', 'same-day': '🚚 Same Day' };
+                const labels = { 'in-stock': ' In Stock', 'same-day': ' Same Day' };
                 activeFiltersArray.push({ type: 'availability', label: labels[avail] || avail, value: avail });
             });
             
             // Source filters
             activeFilters.source.forEach(source => {
-                const labels = { local: '📍 Local' };
+                const labels = { local: ' Local' };
                 activeFiltersArray.push({ type: 'source', label: labels[source] || source, value: source });
             });
             
@@ -904,10 +955,12 @@
                     ${displayProducts.map(product => `
                         <div class="product-card fade-in-up ${currentView === 'list' ? 'flex items-center space-x-6' : ''}">
                             <div class="product-image ${currentView === 'list' ? 'w-32 h-32 flex-shrink-0' : ''}">
-                                ${product.image}
-                                ${!product.inStock ? '<div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs">Out of Stock</div>' : ''}
-                                ${product.sameDayDelivery ? '<div class="absolute top-2 left-2 bg-golden-tan text-dark-olive px-2 py-1 rounded text-xs">Same Day</div>' : ''}
-                            </div>
+    ${product.image.includes('.jpg') || product.image.includes('.png') || product.image.includes('.webp') 
+        ? `<img src="${product.image}" alt="${product.name}" class="absolute inset-0 w-full h-full object-cover" />` 
+        : product.image}
+    ${!product.inStock ? '<div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs">Out of Stock</div>' : ''}
+    ${product.sameDayDelivery ? '<div class="absolute top-2 left-2 bg-golden-tan text-dark-olive px-2 py-1 rounded text-xs">Same Day</div>' : ''}
+</div>
                             <div class="p-6 ${currentView === 'list' ? 'flex-1' : ''}">
                                 <div class="flex items-center justify-between mb-2">
                                     <h3 class="text-xl font-semibold text-warm-beige">${product.name}</h3>
@@ -1496,6 +1549,7 @@
                 ])
             });
         }
+        
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99736d6ce53c9345',t:'MTc2MTkxNjU5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

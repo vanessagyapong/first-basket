@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" class="h-full">
  <head>
+  <link rel="stylesheet" href="navigation.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -430,58 +431,12 @@
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full">
+  <script src="navigation.js"></script>
+  <script>
+    FirstBasket.initNavigation('home'); // Change based on page
+  </script>
     
-    <!-- Navigation -->
-  <nav class="navbar fixed top-0 w-full z-50 px-6 py-4">
-   <div class="max-w-7xl mx-auto flex items-center justify-between">
-
-    <div class="flex items-center space-x-3">
- 
-  <img src="images2/logo2.png" alt="First Basket Logo" class="w-12 h-12 rounded-full object-cover">
-  
-  <span class="text-2xl font-display font-bold text-golden-tan">First Basket</span>
-</div>
-    <!-- Desktop Navigation -->
-    <div class="hidden lg:flex items-center space-x-8"><a href="index.html" class="nav-link text-warm-beige">Home</a>
-  <a href="shop.html" class="nav-link text-warm-beige">Shop</a><a href="#about" class="nav-link text-warm-beige">About</a> <a href="#faq" class="nav-link text-warm-beige">FAQ</a> <a href="#contact" class="nav-link text-warm-beige">Contact</a>
-    </div>
-
-    <!-- Search & Cart -->
-    <div class="hidden md:flex items-center space-x-4">
-     <div class="search-container"><input type="text" class="search-input" placeholder="Search products..."> <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-golden-tan"></i>
-     </div><button class="cart-toggle relative p-2"> <i class="fas fa-shopping-cart text-2xl text-golden-tan"></i> <span class="cart-count absolute -top-1 -right-1 bg-golden-tan text-dark-olive text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">0</span> </button>
-    </div><!-- Mobile Menu Button --> <button class="lg:hidden mobile-menu-btn"> <i class="fas fa-bars text-2xl text-golden-tan"></i> </button>
-   </div>
-  </nav><!-- Mobile Menu -->
-  <div class="mobile-menu">
-   <div class="p-6">
-
-    <div class="flex justify-between items-center mb-8"><span class="text-2xl font-display font-bold text-golden-tan">First Basket</span> <button class="mobile-menu-close"> <i class="fas fa-times text-2xl text-golden-tan"></i> </button>
-    </div>
-
-    <div class="space-y-6"><a href="#home" class="block text-xl text-warm-beige mobile-nav-link">Home</a> <a href="#shop" class="block text-xl text-warm-beige mobile-nav-link">Shop</a> <a href="#about" class="block text-xl text-warm-beige mobile-nav-link">About</a> <a href="#faq" class="block text-xl text-warm-beige mobile-nav-link">FAQ</a> <a href="#contact" class="block text-xl text-warm-beige mobile-nav-link">Contact</a>
-    </div>
-   </div>
-  </div>
-  <!-- Cart Sidebar -->
-  <div class="cart-overlay"></div>
-  <div class="cart-sidebar">
-   <div class="p-6">
-    <div class="flex justify-between items-center mb-6">
-     <h3 class="text-2xl font-display font-bold text-golden-tan">Your Cart</h3><button class="cart-close"> <i class="fas fa-times text-xl text-golden-tan"></i> </button>
-    </div>
-    <div class="cart-items space-y-4"><!-- Cart items will be populated here -->
-    </div>
-    <div class="cart-empty text-center py-12 hidden"><i class="fas fa-shopping-cart text-6xl text-muted-sage mb-4"></i>
-     <p class="text-muted-sage text-lg">Your cart is empty</p>
-     <p class="text-sm text-muted-sage mt-2">Add some delicious items to get started!</p>
-    </div>
-    <div class="cart-footer mt-8 pt-6 border-t border-golden-tan border-opacity-30">
-     <div class="flex justify-between items-center mb-4"><span class="text-lg font-semibold">Total:</span> <span class="cart-total text-2xl font-bold text-golden-tan">$0.00</span>
-     </div><button class="btn-primary w-full">Checkout</button>
-    </div>
-   </div>
-  </div> 
+   
 
   <!-- Hero Section -->
 <section id="home" 
@@ -1144,6 +1099,9 @@
    </div>
   </footer>
   <script>
+
+
+
         // Configuration object
         const defaultConfig = {
             hero_headline: "Fresh. Curated. Delivered.",
@@ -1529,6 +1487,7 @@
                 ])
             });
         }
+        
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'996ac3da74959345',t:'MTc2MTgyNTc2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
